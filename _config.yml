@@ -3,9 +3,9 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: 雅果内部管理平台
+title: 晓月刀说
 subtitle: ''
-description: '雅果内部管理平台'
+description: '晓月刀说的个人空间'
 keywords:
 author: Denley Hsiao
 language: zh-CN
@@ -13,7 +13,7 @@ timezone: 'Asia/Shanghai'
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: http://example.com
+url: http://vpn.argusai.net
 permalink: :title/
 permalink_defaults:
 pretty_urls:
@@ -68,9 +68,9 @@ index_generator:
 # Category & Tag
 default_category: uncategorized
 category_map:
-  手册: guide
-  制度: rule
-  备忘: remember
+  操作系统: os
+  代码分析师: coder
+  日志: log
   杂项: misc
 tag_map:
 
