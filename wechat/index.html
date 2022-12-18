@@ -4,16 +4,19 @@
   <meta charset="utf-8">
   
   
-  <title>归档: 2022 | 晓月刀说</title>
+  <title>微信开发 | 晓月刀说</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="晓月刀说的个人空间">
-<meta property="og:type" content="website">
-<meta property="og:title" content="晓月刀说">
-<meta property="og:url" content="http://vpn.argusai.net/archives/2022/index.html">
+  <meta name="description" content="微信开发，你参加了吗？">
+<meta property="og:type" content="article">
+<meta property="og:title" content="微信开发">
+<meta property="og:url" content="http://vpn.argusai.net/wechat/index.html">
 <meta property="og:site_name" content="晓月刀说">
-<meta property="og:description" content="晓月刀说的个人空间">
+<meta property="og:description" content="微信开发，你参加了吗？">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2017-09-17T01:00:00.000Z">
+<meta property="article:modified_time" content="2022-12-18T12:13:50.997Z">
 <meta property="article:author" content="Denley Hsiao">
+<meta property="article:tag" content="WeChat">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="晓月刀说" type="application/atom+xml">
@@ -71,153 +74,104 @@
 </header>
 
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2022" class="archive-year">2022</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/qa/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-08-27T01:31:00.000Z" itemprop="datePublished">8月 27</time>
+        <section id="main"><article id="post-wechat" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/wechat/" class="article-date">
+  <time class="dt-published" datetime="2017-09-17T01:00:00.000Z" itemprop="datePublished">2017-09-17</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/qa/">问题汇总</a>
+    <h1 class="p-name article-title" itemprop="headline name">
+      微信开发
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/os/install_os/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-08-25T14:45:00.000Z" itemprop="datePublished">8月 25</time>
-</a>
+    <div class="e-content article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/os/install_os/">通用系统安装</a>
-    </h1>
-  
+        <p>微信开发，你参加了吗？</p>
+<span id="more"></span>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/os/install_rpi/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-08-12T01:58:00.000Z" itemprop="datePublished">8月 12</time>
-</a>
+<h1 id="小程序"><a href="#小程序" class="headerlink" title="小程序"></a>小程序</h1><ul>
+<li>WXSS中导入wxss文件时，只能是app内部文件，而且只能形如：<code>@import &quot;/assets/stylesheets/weui.wxss&quot;</code>，不能形如：<code>@import url(&quot;/assets/stylesheets/weui.wxss&quot;)</code></li>
+</ul>
+<h2 id="使用图标库"><a href="#使用图标库" class="headerlink" title="使用图标库"></a>使用图标库</h2><ol>
+<li>下载<a target="_blank" rel="noopener" href="http://fontawesome.io/">font-awesome字体包</a>;</li>
+<li>打开<a target="_blank" rel="noopener" href="https://transfonter.org/">Transfonter网站</a>，上传字体<code>fonts/fontawesome-webfont.ttf</code>（理论其它文件格式也可以转换，并未尝试），选择base64编码，convert后下载;</li>
+<li>下载得到的包中有stylesheet.css文件，打开后与<code>css/font-awesome.css</code>中的内容合并到<code>font-awesome.wxss</code>新文件中，将此文件import到微信小程序的app.wxss文件中就可以了;<br>因stylesheet.css文件中已有<code>@font-face</code>节，<code>css/font-awesome.css</code>最上面相应此节就不需要了</li>
+<li>使用如下:</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;i class=&quot;fa fa-spinner fa-spin fa-3x fa-fw&quot;&gt;&lt;/i&gt;</span><br><span class="line">&lt;span class=&quot;sr-only&quot;&gt;Loading...&lt;/span&gt;</span><br><span class="line"></span><br><span class="line">&lt;i class=&quot;fa fa-circle-o-notch fa-spin fa-3x fa-fw&quot;&gt;&lt;/i&gt;</span><br><span class="line">&lt;span class=&quot;sr-only&quot;&gt;Loading...&lt;/span&gt;</span><br><span class="line"></span><br><span class="line">&lt;i class=&quot;fa fa-refresh fa-spin fa-3x fa-fw&quot;&gt;&lt;/i&gt;</span><br><span class="line">&lt;span class=&quot;sr-only&quot;&gt;Loading...&lt;/span&gt;</span><br><span class="line"></span><br><span class="line">&lt;i class=&quot;fa fa-cog fa-spin fa-3x fa-fw&quot;&gt;&lt;/i&gt;</span><br><span class="line">&lt;span class=&quot;sr-only&quot;&gt;Loading...&lt;/span&gt;</span><br><span class="line"></span><br><span class="line">&lt;i class=&quot;fa fa-spinner fa-pulse fa-3x fa-fw&quot;&gt;&lt;/i&gt;</span><br><span class="line">&lt;span class=&quot;sr-only&quot;&gt;Loading...&lt;/span&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h1 id="公众号"><a href="#公众号" class="headerlink" title="公众号"></a>公众号</h1><h2 id="准则"><a href="#准则" class="headerlink" title="准则"></a>准则</h2><ol>
+<li>订阅号优先</li>
+<li>怎么写才适合订阅号这一表现形式</li>
+<li>保证一星期内至少2篇</li>
+</ol>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ol>
+<li>不发今天才创建的主题</li>
+<li>手机浏览整体效果</li>
+<li>链接提示是否存在</li>
+<li>检查链接有效性</li>
+<li>是否有更好的图片表示主题</li>
+<li>不要轻易删除</li>
+<li>删除再群发时不要推给所有人</li>
+<li>检查整体合理性</li>
+<li>下午4：00发</li>
+</ol>
+<h1 id="服务号"><a href="#服务号" class="headerlink" title="服务号"></a>服务号</h1><ul>
+<li>JS接口安全域名： domain_name.com</li>
+<li>网页授权回调页面域名: <a target="_blank" rel="noopener" href="http://www.domain_name.com/">www.domain_name.com</a></li>
+<li>网页回调网址redirect_uri: urlencode(<a target="_blank" rel="noopener" href="http://www.domain_name.com)转换/">http://www.domain_name.com)转换</a></li>
+</ul>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
+<li><a target="_blank" rel="noopener" href="http://blog.csdn.net/abczdefg/article/details/54407526">微信小程序使用font-awesome图标库</a></li>
+</ul>
+
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/os/install_rpi/">树莓派系统安装</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/os/install_mac/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-08-12T01:24:00.000Z" itemprop="datePublished">8月 12</time>
-</a>
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://vpn.argusai.net/wechat/" data-id="clbtby5lc001nh2oxctf96n36" data-title="微信开发" class="article-share-link">分享</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/os/install_mac/">MAC系统安装</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/os/install_aliyun/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-08-11T07:40:00.000Z" itemprop="datePublished">8月 11</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/os/install_aliyun/">阿里云系统安装</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/os/install_ubuntu/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-08-11T07:35:00.000Z" itemprop="datePublished">8月 11</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/os/install_ubuntu/">ubuntu系统安装</a>
-    </h1>
-  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/WeChat/" rel="tag">WeChat</a></li></ul>
 
-    </header>
+    </footer>
   </div>
-</article>
   
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/os/install_window/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-04-29T08:49:08.000Z" itemprop="datePublished">4月 29</time>
-</a>
-      
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/os/install_window/">windows系统安装</a>
-    </h1>
+    <a href="/google_play/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          安装Google Play
+        
+      </div>
+    </a>
   
+  
+    <a href="/rails_start/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">Rails启动分析</div>
+    </a>
+  
+</nav>
 
-    </header>
-  </div>
+  
 </article>
-  
-  
-    </div></section>
-  
 
 
 </section>

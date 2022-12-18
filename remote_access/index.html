@@ -4,15 +4,17 @@
   <meta charset="utf-8">
   
   
-  <title>归档: 2022 | 晓月刀说</title>
+  <title>远程访问 | 晓月刀说</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="晓月刀说的个人空间">
-<meta property="og:type" content="website">
-<meta property="og:title" content="晓月刀说">
-<meta property="og:url" content="http://vpn.argusai.net/archives/2022/index.html">
+  <meta name="description" content="对远程访问的一点总结">
+<meta property="og:type" content="article">
+<meta property="og:title" content="远程访问">
+<meta property="og:url" content="http://vpn.argusai.net/remote_access/index.html">
 <meta property="og:site_name" content="晓月刀说">
-<meta property="og:description" content="晓月刀说的个人空间">
+<meta property="og:description" content="对远程访问的一点总结">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-06-07T14:58:00.000Z">
+<meta property="article:modified_time" content="2022-12-18T12:13:50.997Z">
 <meta property="article:author" content="Denley Hsiao">
 <meta name="twitter:card" content="summary">
   
@@ -71,153 +73,117 @@
 </header>
 
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2022" class="archive-year">2022</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/qa/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-08-27T01:31:00.000Z" itemprop="datePublished">8月 27</time>
+        <section id="main"><article id="post-remote_access" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/remote_access/" class="article-date">
+  <time class="dt-published" datetime="2018-06-07T14:58:00.000Z" itemprop="datePublished">2018-06-07</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/qa/">问题汇总</a>
+    <h1 class="p-name article-title" itemprop="headline name">
+      远程访问
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/os/install_os/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-08-25T14:45:00.000Z" itemprop="datePublished">8月 25</time>
-</a>
+    <div class="e-content article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/os/install_os/">通用系统安装</a>
-    </h1>
-  
+        <p>对远程访问的一点总结</p>
+<span id="more"></span>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/os/install_rpi/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-08-12T01:58:00.000Z" itemprop="datePublished">8月 12</time>
-</a>
+<h1 id="访问远程主机"><a href="#访问远程主机" class="headerlink" title="访问远程主机"></a>访问远程主机</h1><p>以下修改参数都是针对”&#x2F;etc&#x2F;ssh&#x2F;sshd_config”文件，执行”service sshd restart”后修改才生效</p>
+<ul>
+<li><p>允许远程访问，修改如下参数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">PermitRootLogin yes</span><br><span class="line">PasswordAuthentication yes</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>若想无需身份验证过程，通过<a target="_blank" rel="noopener" href="https://gist.github.com/denleyhsiao/411ac2829bfbe34f24a41088387f6dbe">ssh-copy-id</a>上传本地密钥文件(~&#x2F;.ssh&#x2F;id_rsa.pub)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-copy-id -i ~/.ssh/id_rsa.pub &lt;user_name&gt;@&lt;remote_ip&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>为安全考虑，可修改端口号：”port 822”</p>
+</li>
+<li><p>访问远程</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 远程登陆</span><br><span class="line">ssh -p 822 &lt;user_name&gt;@&lt;remote_ip&gt;</span><br><span class="line"># 远程传输</span><br><span class="line">scp -P 822 &lt;user_name&gt;@&lt;remote_ip&gt;:&lt;remote_file&gt; &lt;local_path&gt;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h1 id="访问远程受限服务"><a href="#访问远程受限服务" class="headerlink" title="访问远程受限服务"></a>访问远程受限服务</h1><h2 id="通过本地访问"><a href="#通过本地访问" class="headerlink" title="通过本地访问"></a>通过本地访问</h2><p>原理：将本地的密钥文件内容注册到远程受限服务中</p>
+<ol>
+<li>如果密钥文件不存在，先生成: “ssh-keygen -t rsa -C <a href="mailto:&#100;&#x65;&#110;&#108;&#x65;&#121;&#x40;&#x6a;&#x75;&#115;&#116;&#116;&#111;&#100;&#x6f;&#x2e;&#x63;&#x6f;&#109;">&#100;&#x65;&#110;&#108;&#x65;&#121;&#x40;&#x6a;&#x75;&#115;&#116;&#116;&#111;&#100;&#x6f;&#x2e;&#x63;&#x6f;&#109;</a>“，一路回车即可，如设密码，在初次连接时，则需要输入此密码</li>
+<li>将密钥文件中的内容注册到受限服务中，以下为各服务注册位置</li>
+</ol>
+<ul>
+<li>gitlab: “设置 - SSH 密钥区域”</li>
+<li>github: ”Settings - SSH and GPG keys”</li>
+</ul>
+<ol start="4">
+<li>测试<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 其中&lt;remote_domain&gt;为受限服务相应的访问域名</span><br><span class="line">ssh -T git@&lt;remote_domain&gt;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="通过远程应用访问"><a href="#通过远程应用访问" class="headerlink" title="通过远程应用访问"></a>通过远程应用访问</h2><p>原理：远程应用通过持有远程受限服务提供的TOKEN进行访问</p>
+<p>以下操作参考自<a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2017/12/travis_ci_tutorial.html">阮一峰的Travis CI 教程</a>和<a target="_blank" rel="noopener" href="https://notes.iissnan.com/2016/publishing-github-pages-with-travis-ci/">使用 Travis CI 自动更新 GitHub Pages</a></p>
+<ol>
+<li>远程受限服务生成TOKEN，以下为服务生成TOKEN位置</li>
+</ol>
+<ul>
+<li>github: “Settings - Developer settings - Personal access tokens”</li>
+</ul>
+<ol start="2">
+<li>为安全起见, 远程应用将不直接使用此TOKEN值</li>
+</ol>
+<ul>
+<li>travis-ci:</li>
+</ul>
+  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 方式1： 通过“More Options - Settings”将此值直接保存为环境变量&lt;GITHUB_TOKEN&gt;</span><br><span class="line"></span><br><span class="line"># 方式2： 鉴于”方式1“也存在第三方应用泄漏此TOKEN的风险，只公开环境变量加密后的值，即这里的输出内容&lt;SECURE&gt;</span><br><span class="line">gem install travis</span><br><span class="line">travis encrypt GITHUB_TOKEN=&lt;TOKEN&gt;</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>远程应用使用此环境变量<br>以travis-ci自动更新github pages为例，在”.travis.yml”中使用此环境变量</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  provider: pages</span><br><span class="line">  skip-cleanup: true</span><br><span class="line">  github-token: $GITHUB_TOKEN</span><br><span class="line">  local-dir: public</span><br><span class="line">  repo: denleyhsiao/denleyhsiao.github.io</span><br><span class="line">  target-branch: master</span><br><span class="line">  fqdn: blog.justtodo.com</span><br><span class="line">  project-name: denleyhsiao.github.io</span><br><span class="line">  committer-from-gh: true</span><br><span class="line">  keep-history: false</span><br><span class="line">  on:</span><br><span class="line">    branch: blog</span><br><span class="line"></span><br><span class="line"># 方式2新加的</span><br><span class="line">env:</span><br><span class="line">  global:</span><br><span class="line">    - secure: &lt;SECURE&gt;</span><br></pre></td></tr></table></figure>
+
+<h1 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/ytangdigl/article/details/78941783">mac连接到window</a>，好象中国区<a target="_blank" rel="noopener" href="https://github.com/fitztrev/shuttle/releases">官网</a>不能下载</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/fitztrev/shuttle/releases">shuttle</a>: 简易的SSH快捷菜单</li>
+</ul>
+
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/os/install_rpi/">树莓派系统安装</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/os/install_mac/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-08-12T01:24:00.000Z" itemprop="datePublished">8月 12</time>
-</a>
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://vpn.argusai.net/remote_access/" data-id="clbtby5ku0017h2ox8ag9aszo" data-title="远程访问" class="article-share-link">分享</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/os/install_mac/">MAC系统安装</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/os/install_aliyun/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-08-11T07:40:00.000Z" itemprop="datePublished">8月 11</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/os/install_aliyun/">阿里云系统安装</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/os/install_ubuntu/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-08-11T07:35:00.000Z" itemprop="datePublished">8月 11</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/os/install_ubuntu/">ubuntu系统安装</a>
-    </h1>
-  
-
-    </header>
+    </footer>
   </div>
-</article>
   
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/os/install_window/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-04-29T08:49:08.000Z" itemprop="datePublished">4月 29</time>
-</a>
-      
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/os/install_window/">windows系统安装</a>
-    </h1>
+    <a href="/log/argusai/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          argusai日志
+        
+      </div>
+    </a>
   
+  
+    <a href="/k8s/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">k8s总结</div>
+    </a>
+  
+</nav>
 
-    </header>
-  </div>
+  
 </article>
-  
-  
-    </div></section>
-  
 
 
 </section>

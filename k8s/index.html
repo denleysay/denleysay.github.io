@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>k8s总结 | 晓月刀说</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="k8s是基于docker下的DevOps工具">
+<meta property="og:type" content="article">
+<meta property="og:title" content="k8s总结">
+<meta property="og:url" content="http://vpn.argusai.net/k8s/index.html">
+<meta property="og:site_name" content="晓月刀说">
+<meta property="og:description" content="k8s是基于docker下的DevOps工具">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-05-27T01:58:00.000Z">
+<meta property="article:modified_time" content="2022-12-18T12:13:50.997Z">
+<meta property="article:author" content="Denley Hsiao">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="晓月刀说" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">晓月刀说</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://vpn.argusai.net"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-k8s" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/k8s/" class="article-date">
+  <time class="dt-published" datetime="2018-05-27T01:58:00.000Z" itemprop="datePublished">2018-05-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a>►<a class="article-category-link" href="/categories/%E5%B7%A5%E5%85%B7/Docker/">Docker</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      k8s总结
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>k8s是基于docker下的DevOps工具</p>
+<span id="more"></span>
+
+<h1 id="学习方法"><a href="#学习方法" class="headerlink" title="学习方法"></a>学习方法</h1><h2 id="docker"><a href="#docker" class="headerlink" title="docker"></a>docker</h2><p>首先从其基础docker学习开始</p>
+<ul>
+<li>从简单开始，边ß看边动手</li>
+<li>难点在网络、端口的映射，容器卷的使用</li>
+</ul>
+<h2 id="kubernetes"><a href="#kubernetes" class="headerlink" title="kubernetes"></a>kubernetes</h2><ul>
+<li>坚持啃官网，特别留意是否有没有<a target="_blank" rel="noopener" href="https://k8smeetup.github.io/">中文官网</a></li>
+<li>先简要了解:  <a target="_blank" rel="noopener" href="https://www.bilibili.com/video/av10087636/">写给孩子看的Kubernetes 动画指南</a>， <a target="_blank" rel="noopener" href="https://jimmysong.io/kubernetes-handbook/guide/docker-cli-to-kubectl.html">docker用户过渡到kubectl命令行指南</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.cnblogs.com/CloudMan6/tag/Kubernetes/">每天5分钟玩转 Kubernetes</a>，微信公众号同步：CloudMan</li>
+<li>单机版minikube开始，安装前要翻墙，包括终端下的，也是边看边动手</li>
+<li>集群学习前先不要自己搭建，太难搭成功，先试验 <a target="_blank" rel="noopener" href="https://labs.play-with-k8s.com/">在线玩转k8s</a></li>
+<li>上一步骤的缺点是没有外网IP，此部分可以在GKE上试验</li>
+<li>啃精典：Kubernetes权威指南：从Docker到Kubernetes实践全接触（第2版)&#x2F; <a target="_blank" rel="noopener" href="https://www.ibm.com/developerworks/community/wikis/home?lang=en#!/wiki/W30b0c771924e_49d2_b3b7_88a2a2bc2e43/page/Kubernetes%E7%B3%BB%E5%88%97">IBM在线微课堂: Kubernetes系列</a></li>
+<li>自己实战，先搭建集群的实验环境，再从简单的项目迁移开始</li>
+</ul>
+<h2 id="他人建议"><a href="#他人建议" class="headerlink" title="他人建议"></a>他人建议</h2><ul>
+<li><p>多读、多看、多听。<br>Retriever Communications 首席技术官 Nic Grange 推荐 Kelsey Hightower 提供的学习资料；此外，Hightower、Beda、Brendan Burns（Kubernetes 创始人之一）联合创作的《Kubernetes：Upand Running》也值得一看；另外，Red Hat 的《Kubernetes Guide》 ，包含了 Kubenetes 词汇表以及 Kubernetes 如何融入企业 IT 架构，推荐阅读。</p>
+</li>
+<li><p>有计划地理解概念性知识。<br>Pepperdata 高级架构师 Kimoon Kim 表示：“Kubernetes 有许多不同的结构，新用户很容易迷路。因此，要先从 Kubernetes Pod 开始，再结合 Kubernetes 集群进行学习。CYBRIC 首席技术官兼联合创始人 Mike Kail 表示：“开始使用像 Kubernetes 这样的新兴技术的最好方法是构建框架，然后以合乎逻辑的方式进行下去，而不是一口气吃成胖子。 Kail 将其分解为：Kubernetes 构建 Blocks（如 Pod），服务（如 ClusterIP），网络，数据卷管理以及服务发现&#x2F;负载均衡。</p>
+</li>
+<li><p>用 Kubernetes “试驾”。<br>一旦你对 Kubernetes 核心概念有了较好的理解，那么，你就可以从一个简单的应用程序部署开始了解集群。Nic Grange 认为：“让 Kubernetes 自己启动和运行是令用户和团队感到最具挑战性的部分。通过类似 Minikube 这样的开源项目，首先学习如何托管 Kubernetes 部署和管理应用程序，然后回过头去学习如何构建和管理自己的集群受益会更大。</p>
+</li>
+<li><p>计划使用 Kubernetes 非关键负载。<br>一旦你接受了这些概念，你就可以开始计划如何使用（Kubernetes）非关键的工作负载了。因为在部署更重要的工作负载时，这个过程能帮助你学习、犯错、获得自信。一个成功的学习策略需要反复试验：通过预判早期的失误，即可限制它们对底层应用程序的影响。这点在“测试和学习模式”发展到“管理生产中的容器”模式的过程中，以及当您用编排平台（如 OpenShift）以可扩展的方式管理容器时，显得尤为重要。</p>
+</li>
+<li><p>从概念学习向深入学习递进，确保学习进度呈现曲线而非直线。<br>部分实践学习应该在日常使用中边练边学，然后逐步掌握概念，深入了解该平台。一旦你建立了初步的应用程序，并逐渐适应，就可以开始深入研究 Kubernetes 的所有“魔法”了。 例如它是如何导流到服务的？当 Pod 移动时，它是如何使用并管理 PV 的？以及为了保护 Pods，哪些需求选项是可用的？这将对您有效地使用托管的 Kubernetes，甚至建立自己的私有 Kubernetes 集群非常有利。</p>
+</li>
+</ul>
+<h1 id="minikube安装"><a href="#minikube安装" class="headerlink" title="minikube安装"></a>minikube安装</h1><p>Mac air下</p>
+<ol>
+<li>安装virtualbox</li>
+<li>kubectl 安装: <code>curl -Lo kubectl https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/darwin/amd64/kubectl &amp;&amp; chmod +x kubectl &amp;&amp; sudo mv kubectl /usr/local/bin/</code></li>
+<li>minikube安装：<code>curl -Lo minikube http://kubernetes.oss-cn-hangzhou.aliyuncs.com/minikube/releases/v0.24.1/minikube-darwin-amd64 &amp;&amp; chmod +x minikube &amp;&amp; sudo mv minikube /usr/local/bin/</code></li>
+<li>启动：<code>minikube start --registry-mirror=https://registry.docker-cn.com</code></li>
+<li>运行: <code>minikube dashboard</code></li>
+</ol>
+<h1 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h1><p>master和node节点都需要的操作，详见: <a target="_blank" rel="noopener" href="http://www.cnblogs.com/CloudMan6/p/8269620.html">部署 k8s Cluster</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">apt-get update &amp;&amp; apt-get install -y apt-transport-https</span><br><span class="line">curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -</span><br><span class="line"><span class="built_in">cat</span> &lt;&lt;<span class="string">EOF &gt;/etc/apt/sources.list.d/kubernetes.list</span></span><br><span class="line"><span class="string">deb http://apt.kubernetes.io/ kubernetes-xenial main</span></span><br><span class="line"><span class="string">EOF</span></span><br><span class="line">apt-get update</span><br><span class="line">apt-get install -y kubelet kubeadm kubectl</span><br></pre></td></tr></table></figure>
+
+<h2 id="master"><a href="#master" class="headerlink" title="master"></a>master</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 一定要记下输出内容，替换后续的部分操作</span></span><br><span class="line">kubeadm init --apiserver-advertise-address $(hostname -i) --pod-network-cidr=10.244.0.0/16</span><br><span class="line"></span><br><span class="line"><span class="comment"># 非root用户下</span></span><br><span class="line"><span class="built_in">mkdir</span> -p <span class="variable">$HOME</span>/.kube</span><br><span class="line">sudo <span class="built_in">cp</span> -i /etc/kubernetes/admin.conf <span class="variable">$HOME</span>/.kube/config</span><br><span class="line">sudo <span class="built_in">chown</span> $(<span class="built_in">id</span> -u):$(<span class="built_in">id</span> -g) <span class="variable">$HOME</span>/.kube/config</span><br><span class="line"></span><br><span class="line">kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml</span><br></pre></td></tr></table></figure>
+
+<h2 id="node"><a href="#node" class="headerlink" title="node"></a>node</h2><p><code>kubeadm join 10.128.0.2:6443 --token ldoxl7.bsfdzfyfunvd0v4q --discovery-token-ca-cert-hash sha256:b846e9c7acf4d83d18850623e0186f8ee97d4f0c483af19410a1cea427872228</code></p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://ehlxr.me/2018/01/12/kubernetes-minikube-installation/">Kubernetes 学习笔记之 MiniKube 安装</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/a42eeb66a19c">mac安装kubernetes并运行echoserver</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/IBM/cloud-journeys/issues/1">Standardized CI System Blog</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/johnnian/Blog/issues/32">使用Minikube搭建Nginx集群</a></li>
+<li><a target="_blank" rel="noopener" href="http://blog.csdn.net/yan234280533/article/details/75136630">Ubuntu 16.04下kubeadm安装Kubernetes</a></li>
+<li><a target="_blank" rel="noopener" href="http://blog.csdn.net/russle/article/details/78841937">Kubernetes1.9 在ubuntu16.4 安装</a></li>
+<li><a target="_blank" rel="noopener" href="http://blog.gezhiqiang.com/2017/08/04/minikube/">利用Minikube来部署一个nodejs应用</a></li>
+<li><a target="_blank" rel="noopener" href="http://dockone.io/article/2523">如何开启kubernetes之旅</a></li>
+<li>从<a target="_blank" rel="noopener" href="https://github.com/IBM/Kubernetes-container-service-GitLab-sample">GitLab-sample</a>中学习如何让gitlab上k8s</li>
+<li><a target="_blank" rel="noopener" href="http://v.youku.com/v_show/id_XMzE4NzU1OTA3Ng==.html">k8s的存储管理</a>: 看完成视频，再重看实践示例</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/IBM/Kubernetes-container-service-GitLab-sample/blob/master/README-cn.md">gitlab在minikube中的实践</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://vpn.argusai.net/k8s/" data-id="clbtby5ka000ch2ox8s3v6fq6" data-title="k8s总结" class="article-share-link">分享</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/remote_access/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          远程访问
+        
+      </div>
+    </a>
+  
+  
+    <a href="/markdown/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">Markdown解析器</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/coder/">代码分析师</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/Docker/">Docker</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/Markdown/">Markdown</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/Vagrant/">Vagrant</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF/AI/">AI</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF/C/">C++</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF/Rails/">Rails</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF/Ruby/">Ruby</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">软件工程</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/os/">操作系统</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/log/">日志</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/misc/">杂项</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Book/" rel="tag">Book</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CI/" rel="tag">CI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Database/" rel="tag">Database</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Firewall/" rel="tag">Firewall</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/" rel="tag">Nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Objective-C/" rel="tag">Objective-C</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Third-Party/" rel="tag">Third-Party</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WeChat/" rel="tag">WeChat</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Book/" style="font-size: 10px;">Book</a> <a href="/tags/C/" style="font-size: 20px;">C++</a> <a href="/tags/CI/" style="font-size: 15px;">CI</a> <a href="/tags/Database/" style="font-size: 15px;">Database</a> <a href="/tags/Firewall/" style="font-size: 10px;">Firewall</a> <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/Objective-C/" style="font-size: 10px;">Objective-C</a> <a href="/tags/Third-Party/" style="font-size: 20px;">Third-Party</a> <a href="/tags/WeChat/" style="font-size: 10px;">WeChat</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">八月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/12/">十二月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">九月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">十二月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/11/">十一月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/10/">十月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">八月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">三月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/12/">十二月 2007</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/qa/">问题汇总</a>
+          </li>
+        
+          <li>
+            <a href="/os/install_os/">通用系统安装</a>
+          </li>
+        
+          <li>
+            <a href="/os/install_rpi/">树莓派系统安装</a>
+          </li>
+        
+          <li>
+            <a href="/os/install_mac/">MAC系统安装</a>
+          </li>
+        
+          <li>
+            <a href="/os/install_aliyun/">阿里云系统安装</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 Denley Hsiao<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

@@ -4,15 +4,17 @@
   <meta charset="utf-8">
   
   
-  <title>归档: 2022 | 晓月刀说</title>
+  <title>ModifyStyle调用不起作用 | 晓月刀说</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="晓月刀说的个人空间">
-<meta property="og:type" content="website">
-<meta property="og:title" content="晓月刀说">
-<meta property="og:url" content="http://vpn.argusai.net/archives/2022/index.html">
+  <meta name="description" content="在使用WTL做CListBox子类化时，使用 ModifyStyle(0, LBS_OWNERDRAWFIXED)不起作用;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ModifyStyle调用不起作用">
+<meta property="og:url" content="http://vpn.argusai.net/modify_style/index.html">
 <meta property="og:site_name" content="晓月刀说">
-<meta property="og:description" content="晓月刀说的个人空间">
+<meta property="og:description" content="在使用WTL做CListBox子类化时，使用 ModifyStyle(0, LBS_OWNERDRAWFIXED)不起作用;">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2011-12-08T01:50:57.000Z">
+<meta property="article:modified_time" content="2022-12-18T12:13:50.997Z">
 <meta property="article:author" content="Denley Hsiao">
 <meta name="twitter:card" content="summary">
   
@@ -71,153 +73,147 @@
 </header>
 
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2022" class="archive-year">2022</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/qa/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-08-27T01:31:00.000Z" itemprop="datePublished">8月 27</time>
+        <section id="main"><article id="post-modify_style" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/modify_style/" class="article-date">
+  <time class="dt-published" datetime="2011-12-08T01:50:57.000Z" itemprop="datePublished">2011-12-08</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>►<a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/C/">C++</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/qa/">问题汇总</a>
+    <h1 class="p-name article-title" itemprop="headline name">
+      ModifyStyle调用不起作用
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/os/install_os/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-08-25T14:45:00.000Z" itemprop="datePublished">8月 25</time>
-</a>
+    <div class="e-content article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/os/install_os/">通用系统安装</a>
-    </h1>
-  
+        <p>在使用WTL做CListBox子类化时，使用 ModifyStyle(0, LBS_OWNERDRAWFIXED)不起作用;</p>
+<span id="more"></span>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/os/install_rpi/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-08-12T01:58:00.000Z" itemprop="datePublished">8月 12</time>
-</a>
+<h1 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h1><p>并不是所有的风格都可以动态利用ModifyStyle&#x2F;ModifyStyleEx()函数增加和去除，有些风格比如 LBS_HASSTRINGS | LBS_OWNERDRAWFIXED| LBS_OWNERDRAWVARIABLE 就只能在创建窗口的时候指定（其后再增加是无效的），也就是说你只能创建的之前指定。</p>
+<h1 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h1><p>自己动态创建控件，或在待子类化的ListBox控件中指定属性（如LBS_HASSTRINGS | LBS_OWNERDRAWFIXED| LBS_OWNERDRAWVARIABLE ）</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
+<li>code   project中的解释</li>
+</ul>
+<blockquote>
+<p>It   is   not   possible   to   change   these   styles   at   runtime   even   though   ModifyStyle()   may   give   the   impression   it   does.   If   you   want   turn   the   Sort   style   on   and   off   for   example   it   is   best   to   construct   the   List   box   by   calling   new   and   Create   then   deleting   it   and   creating   a   new   one   when   the   style   is   to   be   changed.   Alternatively   you   can   have   2   List   box   superimposed   and   hide   the   one   with   the   incorrect   style. </p>
+</blockquote>
+<p>也就是说,无办法动态改变那些只能在创建时设置地style</p>
+<ul>
+<li>ListBox的样式说明</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>风格取值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>LBS_EXTENDEDSEL</td>
+<td>能通过Shift键或者鼠标进行多选</td>
+</tr>
+<tr>
+<td>LBS_HASSTRINGS</td>
+<td>可以用GetText函数得到列表框里选项的字符串</td>
+</tr>
+<tr>
+<td>LBS_MULTICOLUMN</td>
+<td>指定列表框以多列形式显示内容</td>
+</tr>
+<tr>
+<td>LBS_MULTIPLESEL</td>
+<td>用户可以选择多个项</td>
+</tr>
+<tr>
+<td>LBS_NOINTEGRALHEIGHT</td>
+<td>当应用程序创建列表框时，列表框的大小由系统指定</td>
+</tr>
+<tr>
+<td>LBS_NOREDRAW</td>
+<td>列表框不响应用户的修改，可以通过发送WM_REDRAW 来取消该设置</td>
+</tr>
+<tr>
+<td>LBS_NOTIFY</td>
+<td>让主窗口接收列表框的任何改变的消息</td>
+</tr>
+<tr>
+<td>LBS_OWNERDRAWFIXED</td>
+<td>主窗口负责列表框的重画，列表框里每项的高度相同(因此不会有WM_MeasureItem消息)</td>
+</tr>
+<tr>
+<td>LBS_0WNERDRAWVARIABLE</td>
+<td>主窗口负责列表框的重画，列表框里每项的高度可以变化</td>
+</tr>
+<tr>
+<td>LBS_SORT</td>
+<td>按各项名称的字母排序</td>
+</tr>
+<tr>
+<td>LBS_STANDARD</td>
+<td>等同于LBS_SORT和LBS_NOTIFY</td>
+</tr>
+<tr>
+<td>LBS_USETABSTOPS</td>
+<td>允许用户使用Tab键在各项中切换</td>
+</tr>
+<tr>
+<td>LBS_WANTKEYBOARDINPUT</td>
+<td>输入焦点在列表框时，任何键盘输入都会向父窗口发送WM_VKEYTOITEM或者WM_CHARTOITEM消息</td>
+</tr>
+<tr>
+<td>LBS_DISABLENOSCROLI</td>
+<td>当列表框的项不够时，垂直滚动条禁活：没有该属性时，滚动条隐藏</td>
+</tr>
+</tbody></table>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://blog.csdn.net/ietj/article/details/7052257">查看原文</a></li>
+</ul>
+
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/os/install_rpi/">树莓派系统安装</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/os/install_mac/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-08-12T01:24:00.000Z" itemprop="datePublished">8月 12</time>
-</a>
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://vpn.argusai.net/modify_style/" data-id="clbtby5kk000ih2oxd7l4829y" data-title="ModifyStyle调用不起作用" class="article-share-link">分享</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/os/install_mac/">MAC系统安装</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/os/install_aliyun/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-08-11T07:40:00.000Z" itemprop="datePublished">8月 11</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/os/install_aliyun/">阿里云系统安装</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/os/install_ubuntu/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-08-11T07:35:00.000Z" itemprop="datePublished">8月 11</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/os/install_ubuntu/">ubuntu系统安装</a>
-    </h1>
-  
-
-    </header>
+    </footer>
   </div>
-</article>
   
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/os/install_window/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-04-29T08:49:08.000Z" itemprop="datePublished">4月 29</time>
-</a>
-      
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/os/install_window/">windows系统安装</a>
-    </h1>
+    <a href="/postgis/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          PostGIS在Rails中的应用
+        
+      </div>
+    </a>
   
+  
+    <a href="/dll_thinking/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">C++ 库总结</div>
+    </a>
+  
+</nav>
 
-    </header>
-  </div>
+  
 </article>
-  
-  
-    </div></section>
-  
 
 
 </section>

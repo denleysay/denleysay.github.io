@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>树莓派系统安装 | 晓月刀说</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="针对本人MAC系统下的安装">
+<meta property="og:type" content="article">
+<meta property="og:title" content="树莓派系统安装">
+<meta property="og:url" content="http://vpn.argusai.net/os/install_rpi/index.html">
+<meta property="og:site_name" content="晓月刀说">
+<meta property="og:description" content="针对本人MAC系统下的安装">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-08-12T01:58:00.000Z">
+<meta property="article:modified_time" content="2022-12-18T12:13:50.997Z">
+<meta property="article:author" content="Denley Hsiao">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="晓月刀说" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">晓月刀说</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://vpn.argusai.net"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-os/install_rpi" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/os/install_rpi/" class="article-date">
+  <time class="dt-published" datetime="2022-08-12T01:58:00.000Z" itemprop="datePublished">2022-08-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/os/">操作系统</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      树莓派系统安装
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>针对本人MAC系统下的安装</p>
+<span id="more"></span>
+
+<ul>
+<li>确保加密狗驱动已经安装;</li>
+<li>激光雷达(主副)接入IP正常：192.168.0.10&#x2F;11</li>
+<li>远程控制电脑，打开rviz时如果被控电脑没接显示屏就打不开，这是因为rviz软件打开时需要使用屏幕参数。解决方法：在电脑上插一根HDMI转VGA的线即可</li>
+</ul>
+<h1 id="ROS"><a href="#ROS" class="headerlink" title="ROS"></a>ROS</h1><ul>
+<li>运行如下命令失败时应先执行apt-get update -y<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rosdep install --from-paths src --ignore-src --rosdistro=kinetic -y</span><br></pre></td></tr></table></figure></li>
+<li>rosdep命令–from-paths可以是源代码的src目录，也可以是安装包的share目录：其中都有package.xml文件</li>
+<li>source &#x2F;opt&#x2F;ros&#x2F;argusai&#x2F;setup.bash后还是找不到工作空间，刷新一下环境：rospack profile</li>
+<li>launch文件<a target="_blank" rel="noopener" href="http://www.bubuko.com/infodetail-2614884.html">使用robot_upstart自启动</a>：目前问题是执行sudo systemctl daemon-reload &amp;&amp; sudo systemctl start mine_job时：Failed to connect to bus: No such file or directory</li>
+<li>出现问题请见参考下的1&#x2F;2&#x2F;3链接</li>
+</ul>
+<h1 id="远程工具"><a href="#远程工具" class="headerlink" title="远程工具"></a>远程工具</h1><p>Teamviewer</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1O9RxtLc0fhmPhzhjM0xEwA">服务器版本</a>:8yr6已破解，安装完后设置为“随系统启动”,不要升级;</li>
+<li><a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1A0DxukgZot5BZdtRLyikww">客户端版本</a>:8bi7要一致</li>
+</ul>
+<h1 id="树莓派桌面版"><a href="#树莓派桌面版" class="headerlink" title="树莓派桌面版"></a>树莓派桌面版</h1><p>推荐使用厂家预安装的系统</p>
+<ul>
+<li>设置用户argusai，初始密码为: 1…8</li>
+<li>选择自动登陆，其它使用默认设置</li>
+<li>进入目录&#x2F;usr&#x2F;share&#x2F;applications&#x2F;拖动argusai图标到桌面生成快捷方式;</li>
+<li>将终端pin到桌面快捷方式中;</li>
+<li>删除多余的快捷方式：右键Unpin</li>
+<li>第一次看不到wifi网络连接时，重启机器即可；</li>
+<li>执行：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 所有操作开始前都应执行</span></span><br><span class="line">sudo apt-get update -y</span><br><span class="line"></span><br><span class="line">sudo apt-get install wget -y</span><br><span class="line">wget -O ros.sh raw.github.com ......</span><br><span class="line">sudo <span class="built_in">chmod</span> +x ros.sh</span><br><span class="line">./ros.sh</span><br><span class="line"></span><br><span class="line"><span class="comment"># 所有操作完成后都应执行</span></span><br><span class="line">sudo apt-get autoremove clean</span><br><span class="line">sudo <span class="built_in">rm</span> -rf /var/lib/apt/lists/*</span><br></pre></td></tr></table></figure></li>
+<li>执行脚本：<code>sudo argusai_deploy/scripts/ubuntu.sh</code></li>
+<li>sudoers.sh脚本最后部分不起作用，手动加入argusai ALL&#x3D;NOPASSWD:ALL到&#x2F;etc&#x2F;sudoers文件中；</li>
+<li>雷达IP是否设置为: 192.168.2.2，设置详见<a target="_blank" rel="noopener" href="https://app.yinxiang.com/notelink/Login.action?targetUrl=/shard/s26/nl/5132076/f08cc29a-96fe-4dae-a69c-cf384bd7a5cb/">机智人雷达</a></li>
+<li>设置显示样式: 系统–&gt;控制中心–&gt;Mate Tweak–&gt;界面–&gt;将Ubuntu Mate改为Mutiny;</li>
+<li>开机启动方式: 系统–&gt;控制中心–&gt;启动应用程序–&gt;Add<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mate-terminal -x /home/argusai/argusai/share/argusai/scripts/startup.sh</span><br></pre></td></tr></table></figure></li>
+<li>在使用gpio -v之前，先要安装wiringPi:<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/WiringPi/WiringPi</span><br><span class="line"><span class="built_in">cd</span> wiringpi</span><br><span class="line">./build</span><br></pre></td></tr></table></figure></li>
+<li>编译源码时要运行测试时，将misc&#x2F;build.sh的末尾改为–catkin-make-args run_tests -j1</li>
+</ul>
+<h1 id="树莓派服务器版"><a href="#树莓派服务器版" class="headerlink" title="树莓派服务器版"></a>树莓派服务器版</h1><p>ubuntu mate 18.04.2</p>
+<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><ul>
+<li><p>下载: <a target="_blank" rel="noopener" href="https://www.finnie.org/software/raspberrypi/ubuntu-rpi3/ubuntu-16.04-preinstalled-server-armhf+raspi3.img.xz">16.04</a>&#x2F;<a target="_blank" rel="noopener" href="http://cdimage.ubuntu.com/ubuntu/releases/bionic/release/ubuntu-18.04.2-preinstalled-server-armhf+raspi3.img.xz">18.04</a></p>
+</li>
+<li><p>有线网络畅通</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2></li>
+<li><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_40606798/article/details/82626528">修改用户名和密码</a>: 缺省为ubuntu&#x2F;ubuntu</p>
+<table>
+<thead>
+<tr>
+<th>用户名</th>
+<th>密码</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>root</td>
+<td>3,3</td>
+<td></td>
+</tr>
+<tr>
+<td>argusai</td>
+<td>s.a..</td>
+<td></td>
+</tr>
+</tbody></table>
+</li>
+<li><p>脚本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 修正时间(Asian/Shanghai)</span></span><br><span class="line">sudo dpkg-reconfigure tzdata</span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改root密码</span></span><br><span class="line">sudo passwd root</span><br><span class="line"></span><br><span class="line"><span class="comment"># 更新</span></span><br><span class="line">sudo apt-get update -y &amp;&amp; sudo apt-get upgrade -y</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装</span></span><br><span class="line"><span class="comment">## gpu_mem=16</span></span><br><span class="line">sudo vim /boot/firmware/config.txt</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>处启动</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install ros-kinetic-robot-upstart</span><br><span class="line">rosrun robot_upstart install --symlink argusai/launch/argusai.launch</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重启才会生效</span></span><br><span class="line">sudo reboot</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>免密登陆</p>
+<ol>
+<li>获取主机B的IP地址${B_IP};</li>
+<li>在主机A生产密钥对: <code>ssh-keygen -t rsa -C denley@justtodo.com</code>， 会在.ssh目录下产生密钥文件</li>
+<li>将此密钥传输到主机B，<code>ssh-copy-id -i ~/.ssh/id_rsa.pub $&#123;B_USER&#125;@$&#123;B_IP&#125;</code>，这样主机A就可以免密访问主机B了</li>
+</ol>
+</li>
+<li><p>gpio访问权限 参考<a target="_blank" rel="noopener" href="https://raspberrypi.stackexchange.com/questions/40105/access-gpio-pins-without-root-no-access-to-dev-mem-try-running-as-root">wiringPiSetup: Try running with sudo</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">chown</span> root.argusai /dev/gpiomem</span><br><span class="line">sudo <span class="built_in">chmod</span> g+rw /dev/gpiomem</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h1 id="工控机"><a href="#工控机" class="headerlink" title="工控机"></a>工控机</h1><p>推荐使用ubuntu 16.04.5版本</p>
+<ul>
+<li><p>制作<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/187c4ab01add">ubuntu启动盘</a></p>
+</li>
+<li><p>按DEL键进入BIOS设置上电自启，U盘启动安装</p>
+</li>
+<li><p>改用<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/7690bfbcee72">国内Ubuntu更新源</a>:亦可直接选择aliyun</p>
+</li>
+<li><p>改用<a target="_blank" rel="noopener" href="http://wiki.ros.org/ROS/Installation/UbuntuMirrors">国内ROS更新源</a>&#x2F;<a target="_blank" rel="noopener" href="https://www.cnblogs.com/letisl/p/11815191.html">更新方法</a>：亦可手动添加</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">deb http://ros.exbot.net/rospackage/ros/ubuntu/ trusty main</span><br></pre></td></tr></table></figure></li>
+<li><p>google chrome安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo wget http://www.linuxidc.com/files/repo/google-chrome.list -P /etc/apt/sources.list.d/</span><br><span class="line">wget -q -O - https://dl.google.com/linux/linux_signing_key.pub  | sudo apt-key add -</span><br><span class="line">sudo apt-get update -y</span><br><span class="line">sudo apt-get install google-chrome-stable -y</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装teamviewer并设置成“随系统一同启动”，安装失败的话改为执行：<code>sudo apt-get install ./teamviewer-xxxx.deb</code>，</p>
+</li>
+<li><p>安装<a target="_blank" rel="noopener" href="https://docs.brew.sh/Homebrew-on-Linux">linuxbrew</a></p>
+</li>
+<li><p>安装<a target="_blank" rel="noopener" href="http://ww1.roboware.me/#/Download">RoboWare Studio开发工具</a></p>
+</li>
+<li><p>开机启动设置: 搜索中输入<code>session</code>后选择启动应用程序</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gnome-terminal -x /home/argusai/argusai/share/argusai/scripts/startup.sh</span><br></pre></td></tr></table></figure></li>
+<li><p>分屏终端工具: terminator</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_19339041/article/details/80058575">ubuntu系统汉化</a></p>
+</li>
+<li><p>安装shell: <a target="_blank" rel="noopener" href="https://www.cnblogs.com/EasonJim/p/7863099.html">zsh&#x2F;oh-my-zsh</a></p>
+</li>
+<li><p>安装终端增强<a target="_blank" rel="noopener" href="https://ohmyz.sh/">oh-my-zsh</a>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh -c <span class="string">&quot;<span class="subst">$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)</span>&quot;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>运行时文件存在但还是出现<code>No such file or directory</code>错误的<a target="_blank" rel="noopener" href="https://www.cnblogs.com/rohens-hbg/p/4763378.html">解决方法</a></p>
+</li>
+<li><p>无法获得锁 &#x2F;var&#x2F;lib&#x2F;dpkg&#x2F;lock -open （11：资源暂时不可用）的<a target="_blank" rel="noopener" href="https://blog.51cto.com/dreamylights/1287073">解决方法</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">rm</span>  /var/cache/apt/archives/lock</span><br><span class="line">sudo <span class="built_in">rm</span> /var/lib/dpkg/lock</span><br></pre></td></tr></table></figure></li>
+<li><p>编译源码： <code>INSTALL_PATH=/home/jygk/argusai OS=ABC ./src/argusai/scripts/misc/build.sh</code></p>
+</li>
+</ul>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ol>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/zhuiqiuzhuoyue583/article/details/90597499">GPG error</a></li>
+<li>[Error in &#96;appstreamcli’](<a target="_blank" rel="noopener" href="https://blog.csdn.net/AAA123524457/article/details/96484576">https://blog.csdn.net/AAA123524457/article/details/96484576</a>)</li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/u013468614/article/details/102917569">cannot download default sources list from</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/u013451404/article/details/80385496">树莓派打开GPIO的TTL串口</a></li>
+<li><a target="_blank" rel="noopener" href="https://jingyan.baidu.com/article/14bd256e7afb78bb6c261246.html">通过USB转TTL来登陆树莓派</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/shaopengf/article/details/75072907">树莓派raspberry pi 安装远程工具teamviewer</a></li>
+<li><a target="_blank" rel="noopener" href="https://wiki.ubuntu.com/ARM/RaspberryPi">各版本服务器版</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/kevin3683/article/details/52202425">RaspberryPi 3安装ubuntu server</a></li>
+<li><a target="_blank" rel="noopener" href="https://jamesachambers.com/raspberry-pi-ubuntu-server-18-04-2-installation-guide/">Raspberry Pi 3B+ Ubuntu Server 18.04.2 Installation Guide</a></li>
+</ol>
+<p>10.<a target="_blank" rel="noopener" href="http://blog.sina.com.cn/s/blog_602f87700102wqy9.html">ROS程序开机自启动</a><br>11.<a target="_blank" rel="noopener" href="https://www.cnblogs.com/free-ys/p/10162388.html">Ubuntu Server 18.04安装并配置wifi</a><br>12.<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/5ff453cb994e">ROS主从机设置</a><br>13,<a target="_blank" rel="noopener" href="https://www.cnblogs.com/konrad/p/6901273.html">免密登陆</a><br>14.<a target="_blank" rel="noopener" href="https://wenku.baidu.com/view/66c6604bc850ad02de80416d.html">各主板定时开机设置</a><br>15.<a target="_blank" rel="noopener" href="https://blog.csdn.net/kxwinxp/article/details/78370980">让树莓派永不失联</a>: Screen</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://vpn.argusai.net/os/install_rpi/" data-id="clbtby5lt0030h2ox868v35lk" data-title="树莓派系统安装" class="article-share-link">分享</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/os/install_os/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          通用系统安装
+        
+      </div>
+    </a>
+  
+  
+    <a href="/os/install_mac/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">MAC系统安装</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/coder/">代码分析师</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/Docker/">Docker</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/Markdown/">Markdown</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/Vagrant/">Vagrant</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF/AI/">AI</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF/C/">C++</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF/Rails/">Rails</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF/Ruby/">Ruby</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">软件工程</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/os/">操作系统</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/log/">日志</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/misc/">杂项</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Book/" rel="tag">Book</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CI/" rel="tag">CI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Database/" rel="tag">Database</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Firewall/" rel="tag">Firewall</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/" rel="tag">Nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Objective-C/" rel="tag">Objective-C</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Third-Party/" rel="tag">Third-Party</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WeChat/" rel="tag">WeChat</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Book/" style="font-size: 10px;">Book</a> <a href="/tags/C/" style="font-size: 20px;">C++</a> <a href="/tags/CI/" style="font-size: 15px;">CI</a> <a href="/tags/Database/" style="font-size: 15px;">Database</a> <a href="/tags/Firewall/" style="font-size: 10px;">Firewall</a> <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/Objective-C/" style="font-size: 10px;">Objective-C</a> <a href="/tags/Third-Party/" style="font-size: 20px;">Third-Party</a> <a href="/tags/WeChat/" style="font-size: 10px;">WeChat</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">八月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/12/">十二月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">九月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">十二月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/11/">十一月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/10/">十月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">八月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">三月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/12/">十二月 2007</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/qa/">问题汇总</a>
+          </li>
+        
+          <li>
+            <a href="/os/install_os/">通用系统安装</a>
+          </li>
+        
+          <li>
+            <a href="/os/install_rpi/">树莓派系统安装</a>
+          </li>
+        
+          <li>
+            <a href="/os/install_mac/">MAC系统安装</a>
+          </li>
+        
+          <li>
+            <a href="/os/install_aliyun/">阿里云系统安装</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 Denley Hsiao<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

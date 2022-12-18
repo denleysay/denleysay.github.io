@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>阿里云系统安装 | 晓月刀说</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="针对mac与阿里云上的ubuntu远程操作">
+<meta property="og:type" content="article">
+<meta property="og:title" content="阿里云系统安装">
+<meta property="og:url" content="http://vpn.argusai.net/os/install_aliyun/index.html">
+<meta property="og:site_name" content="晓月刀说">
+<meta property="og:description" content="针对mac与阿里云上的ubuntu远程操作">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-08-11T07:40:00.000Z">
+<meta property="article:modified_time" content="2022-12-18T12:13:50.997Z">
+<meta property="article:author" content="Denley Hsiao">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="晓月刀说" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">晓月刀说</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://vpn.argusai.net"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-os/install_aliyun" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/os/install_aliyun/" class="article-date">
+  <time class="dt-published" datetime="2022-08-11T07:40:00.000Z" itemprop="datePublished">2022-08-11</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/os/">操作系统</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      阿里云系统安装
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>针对mac与阿里云上的ubuntu远程操作</p>
+<span id="more"></span>
+
+<ol>
+<li><p>阿里云服务器重置: 已安装python3;</p>
+</li>
+<li><p>系统初始化</p>
+<ul>
+<li>执行<a href="/coder/install_ubuntu">ubuntu系统安装</a>下的<code>docker环境安装</code>小节</li>
+<li><a target="_blank" rel="noopener" href="https://app.yinxiang.com/shard/s26/nl/5132076/76807934-164f-4bdd-8280-22c673fc2089/">git环境安装</a></li>
+</ul>
+</li>
+<li><p>ssh远程登陆到阿里云，可参考附录2;</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C <span class="variable">$&#123;REMOTE_USERNAME&#125;</span>@justtodo.com</span><br><span class="line">ssh-copy-id -i ~/.ssh/id_rsa.pub <span class="variable">$&#123;REMOTE_USERNAME&#125;</span>@<span class="variable">$&#123;REMOTE_IP&#125;</span></span><br><span class="line">ssh <span class="variable">$&#123;REMOTE_USERNAME&#125;</span>@<span class="variable">$&#123;REMOTE_IP&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>迁出源码，执行</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/argusai/argusai_web.git</span><br><span class="line"><span class="built_in">cd</span> argusai_web</span><br><span class="line">sudo <span class="built_in">chmod</span> a+x main.py</span><br><span class="line">pip3 install bottle</span><br><span class="line">python3 main.py</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>外网访问<code>$&#123;REMOTE_IP&#125;:8080</code>时没有反应，可参考<a target="_blank" rel="noopener" href="https://developer.aliyun.com/article/87135">阿里云服务器公网ip无法访问解决办法</a>或<a target="_blank" rel="noopener" href="https://blog.csdn.net/a419419/article/details/85047110">阿里云公网访问不了，域名不加端口号访问</a></p>
+</li>
+<li><p>后台运行</p>
+<ul>
+<li>执行以下步骤后，按CTRL+A D就后台运行； <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install screen</span><br><span class="line">screen -S vpn</span><br><span class="line"><span class="built_in">cd</span> argusai_web</span><br><span class="line">python3 main.py</span><br></pre></td></tr></table></figure></li>
+<li>执行<code>screen -r</code>就返回前台运行</li>
+</ul>
+</li>
+</ol>
+<h1 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h1><ol>
+<li><p>因mac下没有文件ssh-copy-id，在<code>/usr/bin/</code>目录下新建此文件</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Shell script to install your identity.pub on a remote machine</span></span><br><span class="line"><span class="comment"># Takes the remote machine name as an argument.</span></span><br><span class="line"><span class="comment"># Obviously, the remote machine must accept password authentication,</span></span><br><span class="line"><span class="comment"># or one of the other keys in your ssh-agent, for this to work.</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">ID_FILE=<span class="string">&quot;<span class="variable">$&#123;HOME&#125;</span>/.ssh/identity.pub&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ <span class="string">&quot;-i&quot;</span> = <span class="string">&quot;<span class="variable">$1</span>&quot;</span> ]; <span class="keyword">then</span></span><br><span class="line">  <span class="built_in">shift</span></span><br><span class="line">  <span class="comment"># check if we have 2 parameters left, if so the first is the new ID file</span></span><br><span class="line">  <span class="keyword">if</span> [ -n <span class="string">&quot;<span class="variable">$2</span>&quot;</span> ]; <span class="keyword">then</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">expr</span> <span class="string">&quot;<span class="variable">$1</span>&quot;</span> : <span class="string">&quot;.*\.pub&quot;</span> ; <span class="keyword">then</span></span><br><span class="line">      ID_FILE=<span class="string">&quot;<span class="variable">$1</span>&quot;</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">      ID_FILE=<span class="string">&quot;<span class="variable">$1</span>.pub&quot;</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line">    <span class="built_in">shift</span>         <span class="comment"># and this should leave $1 as the target name</span></span><br><span class="line">  <span class="keyword">fi</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">  <span class="keyword">if</span> [ x<span class="variable">$SSH_AUTH_SOCK</span> != x ] ; <span class="keyword">then</span></span><br><span class="line">    GET_ID=<span class="string">&quot;<span class="variable">$GET_ID</span> ssh-add -L&quot;</span></span><br><span class="line">  <span class="keyword">fi</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ -z <span class="string">&quot;`eval <span class="variable">$GET_ID</span>`&quot;</span> ] &amp;&amp; [ -r <span class="string">&quot;<span class="variable">$&#123;ID_FILE&#125;</span>&quot;</span> ] ; <span class="keyword">then</span></span><br><span class="line">  GET_ID=<span class="string">&quot;cat <span class="variable">$&#123;ID_FILE&#125;</span>&quot;</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ -z <span class="string">&quot;`eval <span class="variable">$GET_ID</span>`&quot;</span> ]; <span class="keyword">then</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$0</span>: ERROR: No identities found&quot;</span> &gt;&amp;2</span><br><span class="line">  <span class="built_in">exit</span> 1</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$#</span>&quot;</span> -lt 1 ] || [ <span class="string">&quot;<span class="variable">$1</span>&quot;</span> = <span class="string">&quot;-h&quot;</span> ] || [ <span class="string">&quot;<span class="variable">$1</span>&quot;</span> = <span class="string">&quot;--help&quot;</span> ]; <span class="keyword">then</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">&quot;Usage: <span class="variable">$0</span> [-i [identity_file]] [user@]machine&quot;</span> &gt;&amp;2</span><br><span class="line">  <span class="built_in">exit</span> 1</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#123; <span class="built_in">eval</span> <span class="string">&quot;<span class="variable">$GET_ID</span>&quot;</span> ; &#125; | ssh <span class="variable">$1</span> <span class="string">&quot;umask 077; test -d .ssh || mkdir .ssh ; cat &gt;&gt; .ssh/authorized_keys&quot;</span> || <span class="built_in">exit</span> 1</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">cat</span> &lt;&lt;<span class="string">EOF</span></span><br><span class="line"><span class="string">Now try logging into the machine, with &quot;ssh &#x27;$1&#x27;&quot;, and check in:</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">  .ssh/authorized_keys</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">to make sure we haven&#x27;t added extra keys that you weren&#x27;t expecting.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">EOF</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://vpn.argusai.net/os/install_aliyun/" data-id="clbtby5lo002sh2oxh6tk0ld3" data-title="阿里云系统安装" class="article-share-link">分享</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/os/install_mac/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          MAC系统安装
+        
+      </div>
+    </a>
+  
+  
+    <a href="/os/install_ubuntu/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">ubuntu系统安装</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/coder/">代码分析师</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/Docker/">Docker</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/Markdown/">Markdown</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/Vagrant/">Vagrant</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF/AI/">AI</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF/C/">C++</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF/Rails/">Rails</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF/Ruby/">Ruby</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">软件工程</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/os/">操作系统</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/log/">日志</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/misc/">杂项</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Book/" rel="tag">Book</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CI/" rel="tag">CI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Database/" rel="tag">Database</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Firewall/" rel="tag">Firewall</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/" rel="tag">Nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Objective-C/" rel="tag">Objective-C</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Third-Party/" rel="tag">Third-Party</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WeChat/" rel="tag">WeChat</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Book/" style="font-size: 10px;">Book</a> <a href="/tags/C/" style="font-size: 20px;">C++</a> <a href="/tags/CI/" style="font-size: 15px;">CI</a> <a href="/tags/Database/" style="font-size: 15px;">Database</a> <a href="/tags/Firewall/" style="font-size: 10px;">Firewall</a> <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/Objective-C/" style="font-size: 10px;">Objective-C</a> <a href="/tags/Third-Party/" style="font-size: 20px;">Third-Party</a> <a href="/tags/WeChat/" style="font-size: 10px;">WeChat</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">八月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/12/">十二月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">九月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">十二月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/11/">十一月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/10/">十月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">八月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">三月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/12/">十二月 2007</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/qa/">问题汇总</a>
+          </li>
+        
+          <li>
+            <a href="/os/install_os/">通用系统安装</a>
+          </li>
+        
+          <li>
+            <a href="/os/install_rpi/">树莓派系统安装</a>
+          </li>
+        
+          <li>
+            <a href="/os/install_mac/">MAC系统安装</a>
+          </li>
+        
+          <li>
+            <a href="/os/install_aliyun/">阿里云系统安装</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 Denley Hsiao<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

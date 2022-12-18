@@ -4,16 +4,19 @@
   <meta charset="utf-8">
   
   
-  <title>归档: 2022 | 晓月刀说</title>
+  <title>QT使用 | 晓月刀说</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="晓月刀说的个人空间">
-<meta property="og:type" content="website">
-<meta property="og:title" content="晓月刀说">
-<meta property="og:url" content="http://vpn.argusai.net/archives/2022/index.html">
+  <meta name="description" content="QT，你用它做过什么？">
+<meta property="og:type" content="article">
+<meta property="og:title" content="QT使用">
+<meta property="og:url" content="http://vpn.argusai.net/qt/index.html">
 <meta property="og:site_name" content="晓月刀说">
-<meta property="og:description" content="晓月刀说的个人空间">
+<meta property="og:description" content="QT，你用它做过什么？">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2016-07-19T01:00:00.000Z">
+<meta property="article:modified_time" content="2022-12-18T12:13:50.997Z">
 <meta property="article:author" content="Denley Hsiao">
+<meta property="article:tag" content="Third-Party">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="晓月刀说" type="application/atom+xml">
@@ -71,153 +74,85 @@
 </header>
 
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2022" class="archive-year">2022</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/qa/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-08-27T01:31:00.000Z" itemprop="datePublished">8月 27</time>
+        <section id="main"><article id="post-qt" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/qt/" class="article-date">
+  <time class="dt-published" datetime="2016-07-19T01:00:00.000Z" itemprop="datePublished">2016-07-19</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>►<a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/C/">C++</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/qa/">问题汇总</a>
+    <h1 class="p-name article-title" itemprop="headline name">
+      QT使用
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/os/install_os/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-08-25T14:45:00.000Z" itemprop="datePublished">8月 25</time>
-</a>
+    <div class="e-content article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/os/install_os/">通用系统安装</a>
-    </h1>
-  
+        <p>QT，你用它做过什么？</p>
+<span id="more"></span>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/os/install_rpi/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-08-12T01:58:00.000Z" itemprop="datePublished">8月 12</time>
-</a>
+<ul>
+<li>绕开QT官方的注册进行<a target="_blank" rel="noopener" href="http://download.qt.io/official_releases/">下载</a></li>
+<li>可以自定义安装QT, 不安装android相关</li>
+<li>通过vs2017安装qt的addin：通过“工具和扩展”菜单搜索”QT”</li>
+<li>通过”Qt VS Tools“&#x3D;&gt;”Qt Options”菜单设置qt的安装位置; 如项目是从另一系统迁移来的，也要设置”Qt Project Options”&#x3D;&gt;”Properties”&#x3D;&gt;”Version”</li>
+</ul>
+<h1 id="链接问题"><a href="#链接问题" class="headerlink" title="链接问题"></a>链接问题</h1><p>VS2008下的QT App在包含Q_OBJECT宏的头文件时，会提示链接错误</p>
+<p>原因是在处理Q_OBJECT宏的方式上,Qt其实是在qmake生成的makefile里面调用了Qt\bin\moc.exe，而VS2008不会，</p>
+<p>做如下配置：假设对包含Q_OBJECT宏的aa.h文件进行处理,生成一个moc_aa.cpp</p>
+<ol>
+<li>点击aa.h右键在属性里面加一个Custom Build Step；</li>
+<li>选取所有配置</li>
+<li>Custom Build Step-&gt;General-&gt;Command Line里面加上<br>  $(QTDIR)\bin\moc.exe $(InputPath) -o$(InputDir)\moc_$(InputName).cpp</li>
+<li>Custom Build Step-&gt;General-&gt;Outputs里面加上moc_$(InputName).cpp</li>
+</ol>
+
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/os/install_rpi/">树莓派系统安装</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/os/install_mac/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-08-12T01:24:00.000Z" itemprop="datePublished">8月 12</time>
-</a>
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://vpn.argusai.net/qt/" data-id="clbtby5kr0010h2ox8ltcap6m" data-title="QT使用" class="article-share-link">分享</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/os/install_mac/">MAC系统安装</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/os/install_aliyun/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-08-11T07:40:00.000Z" itemprop="datePublished">8月 11</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/os/install_aliyun/">阿里云系统安装</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/os/install_ubuntu/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-08-11T07:35:00.000Z" itemprop="datePublished">8月 11</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/os/install_ubuntu/">ubuntu系统安装</a>
-    </h1>
-  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Third-Party/" rel="tag">Third-Party</a></li></ul>
 
-    </header>
+    </footer>
   </div>
-</article>
   
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/os/install_window/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-04-29T08:49:08.000Z" itemprop="datePublished">4月 29</time>
-</a>
-      
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/os/install_window/">windows系统安装</a>
-    </h1>
+    <a href="/coder/preface/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          写在前面
+        
+      </div>
+    </a>
   
+  
+    <a href="/postgis/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">PostGIS在Rails中的应用</div>
+    </a>
+  
+</nav>
 
-    </header>
-  </div>
+  
 </article>
-  
-  
-    </div></section>
-  
 
 
 </section>

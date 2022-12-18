@@ -4,15 +4,17 @@
   <meta charset="utf-8">
   
   
-  <title>归档: 2022 | 晓月刀说</title>
+  <title>Jekyll使用 | 晓月刀说</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="晓月刀说的个人空间">
-<meta property="og:type" content="website">
-<meta property="og:title" content="晓月刀说">
-<meta property="og:url" content="http://vpn.argusai.net/archives/2022/index.html">
+  <meta name="description" content="一直在找合适的主题，也觉得[掌心中的demo][zhangxin]主题效果不错，但最终决定使用kasper，还是因为看了Rei的[简单就好][simple-is-better]">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Jekyll使用">
+<meta property="og:url" content="http://vpn.argusai.net/jekyll/index.html">
 <meta property="og:site_name" content="晓月刀说">
-<meta property="og:description" content="晓月刀说的个人空间">
+<meta property="og:description" content="一直在找合适的主题，也觉得[掌心中的demo][zhangxin]主题效果不错，但最终决定使用kasper，还是因为看了Rei的[简单就好][simple-is-better]">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2017-10-10T01:00:00.000Z">
+<meta property="article:modified_time" content="2022-12-18T12:13:50.997Z">
 <meta property="article:author" content="Denley Hsiao">
 <meta name="twitter:card" content="summary">
   
@@ -71,153 +73,86 @@
 </header>
 
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2022" class="archive-year">2022</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/qa/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-08-27T01:31:00.000Z" itemprop="datePublished">8月 27</time>
+        <section id="main"><article id="post-jekyll" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/jekyll/" class="article-date">
+  <time class="dt-published" datetime="2017-10-10T01:00:00.000Z" itemprop="datePublished">2017-10-10</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/qa/">问题汇总</a>
+    <h1 class="p-name article-title" itemprop="headline name">
+      Jekyll使用
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/os/install_os/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-08-25T14:45:00.000Z" itemprop="datePublished">8月 25</time>
-</a>
+    <div class="e-content article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/os/install_os/">通用系统安装</a>
-    </h1>
-  
+        <p>一直在找合适的主题，也觉得[掌心中的demo][zhangxin]主题效果不错，但最终决定使用kasper，还是因为看了Rei的[简单就好][simple-is-better]</p>
+<span id="more"></span>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/os/install_rpi/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-08-12T01:58:00.000Z" itemprop="datePublished">8月 12</time>
-</a>
+<p>不过初次使用kasper，就遇到了下面的问题：</p>
+<h1 id="启动错误"><a href="#启动错误" class="headerlink" title="启动错误"></a>启动错误</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Incremental build: disabled. Enable with --incremental</span><br><span class="line">Generating...</span><br><span class="line"> Deprecation: Collection#map should be called on the #docs array directly.</span><br><span class="line">              Called by /Users/xiao_dli/work/kasper/_plugins/rssgenerator.rb:46:in `block in generate&#x27;.</span><br><span class="line"> Deprecation: Collection#count should be called on the #docs array directly.</span><br><span class="line">              Called by /Users/xiao_dli/work/kasper/_plugins/rssgenerator.rb:49:in `rescue in block in generate&#x27;.</span><br><span class="line"> Deprecation: Collection#reverse should be called on the #docs array directly.</span><br><span class="line">              Called by /Users/xiao_dli/work/kasper/_plugins/rssgenerator.rb:51:in `block in generate&#x27;.</span><br><span class="line"> Deprecation: Document#title is now a key in the #data hash.</span><br><span class="line">              Called by /Users/xiao_dli/work/kasper/_plugins/rssgenerator.rb:53:in `block (3 levels) in generate&#x27;.</span><br><span class="line"> Deprecation: Document#excerpt is now a key in the #data hash.</span><br><span class="line">              Called by /Users/xiao_dli/work/kasper/_plugins/rssgenerator.rb:55:in `block (3 levels) in generate&#x27;.</span><br></pre></td></tr></table></figure>
+
+<p>最后发现原来是不能使用jekyll新的版本3.0.0（3.0.1也不行），通过以下方式解决</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gem uninstall jekyll</span><br><span class="line">gem install jekyll -v &#x27;&lt;3.0.0&#x27;</span><br></pre></td></tr></table></figure>
+
+<h1 id="路由失败"><a href="#路由失败" class="headerlink" title="路由失败"></a>路由失败</h1><p>个人Blog网站上通过首页无法进入具体的文章页面，解决方法是：</p>
+<ul>
+<li>_config.yml中”baseurl: &#x2F;“的”:”后面只能是一个空格而不是一个tab</li>
+<li>index.html中: href中删除”site.baseurl”部分.</li>
+</ul>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
+<li><a target="_blank" rel="noopener" href="http://www.jianshu.com/p/609e1197754c">采用Jekyll + github + pygments构建个人博客的最终说明</a></li>
+<li><a target="_blank" rel="noopener" href="http://jekyll.bootcss.com/docs/home/">Jekyll指南</a></li>
+<li><a target="_blank" rel="noopener" href="http://higrid.net/c-art-jeklly_template_data.htm">Jekyll变量 和 Jekyll模板语法教程</a></li>
+<li><a target="_blank" rel="noopener" href="http://ju.outofmemory.cn/entry/98471">Jekyll 语法简单笔记</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.zhanxin.info/themes.html">Jekyll themes</a></li>
+</ul>
+
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/os/install_rpi/">树莓派系统安装</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/os/install_mac/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-08-12T01:24:00.000Z" itemprop="datePublished">8月 12</time>
-</a>
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://vpn.argusai.net/jekyll/" data-id="clbtby5k8000ah2ox19y2d8mv" data-title="Jekyll使用" class="article-share-link">分享</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/os/install_mac/">MAC系统安装</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/os/install_aliyun/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-08-11T07:40:00.000Z" itemprop="datePublished">8月 11</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/os/install_aliyun/">阿里云系统安装</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/os/install_ubuntu/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-08-11T07:35:00.000Z" itemprop="datePublished">8月 11</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/os/install_ubuntu/">ubuntu系统安装</a>
-    </h1>
-  
-
-    </header>
+    </footer>
   </div>
-</article>
   
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/os/install_window/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-04-29T08:49:08.000Z" itemprop="datePublished">4月 29</time>
-</a>
-      
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/os/install_window/">windows系统安装</a>
-    </h1>
+    <a href="/chiron_2/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          Chiron-2架构风格
+        
+      </div>
+    </a>
   
+  
+    <a href="/google_play/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">安装Google Play</div>
+    </a>
+  
+</nav>
 
-    </header>
-  </div>
+  
 </article>
-  
-  
-    </div></section>
-  
 
 
 </section>

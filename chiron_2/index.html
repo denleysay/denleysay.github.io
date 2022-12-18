@@ -4,15 +4,17 @@
   <meta charset="utf-8">
   
   
-  <title>归档: 2022 | 晓月刀说</title>
+  <title>Chiron-2架构风格 | 晓月刀说</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="晓月刀说的个人空间">
-<meta property="og:type" content="website">
-<meta property="og:title" content="晓月刀说">
-<meta property="og:url" content="http://vpn.argusai.net/archives/2022/index.html">
+  <meta name="description" content="最近有空，看了下Roy Thomas Fielding的博士论文《架构风格与基于网络的软件架构设计》，才知道架构对程序员的重要性；以前有人推荐过此文，说是牛人写的，其导师Richard N. Taylor更牛，但都因为各种原因搁置了。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Chiron-2架构风格">
+<meta property="og:url" content="http://vpn.argusai.net/chiron_2/index.html">
 <meta property="og:site_name" content="晓月刀说">
-<meta property="og:description" content="晓月刀说的个人空间">
+<meta property="og:description" content="最近有空，看了下Roy Thomas Fielding的博士论文《架构风格与基于网络的软件架构设计》，才知道架构对程序员的重要性；以前有人推荐过此文，说是牛人写的，其导师Richard N. Taylor更牛，但都因为各种原因搁置了。">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2017-10-11T07:33:42.000Z">
+<meta property="article:modified_time" content="2022-12-18T12:13:50.997Z">
 <meta property="article:author" content="Denley Hsiao">
 <meta name="twitter:card" content="summary">
   
@@ -71,153 +73,77 @@
 </header>
 
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2022" class="archive-year">2022</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/qa/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-08-27T01:31:00.000Z" itemprop="datePublished">8月 27</time>
+        <section id="main"><article id="post-chiron_2" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/chiron_2/" class="article-date">
+  <time class="dt-published" datetime="2017-10-11T07:33:42.000Z" itemprop="datePublished">2017-10-11</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>►<a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">软件工程</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/qa/">问题汇总</a>
+    <h1 class="p-name article-title" itemprop="headline name">
+      Chiron-2架构风格
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/os/install_os/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-08-25T14:45:00.000Z" itemprop="datePublished">8月 25</time>
-</a>
+    <div class="e-content article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/os/install_os/">通用系统安装</a>
-    </h1>
-  
+        <p>最近有空，看了下<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Roy_Fielding">Roy Thomas Fielding</a>的博士论文《架构风格与基于网络的软件架构设计》，才知道架构对程序员的重要性；以前有人推荐过此文，说是牛人写的，其导师<a target="_blank" rel="noopener" href="http://www.ics.uci.edu/~taylor/">Richard N. Taylor</a>更牛，但都因为各种原因搁置了。</p>
+<span id="more"></span>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/os/install_rpi/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-08-12T01:58:00.000Z" itemprop="datePublished">8月 12</time>
-</a>
+<p>本来是冲着C2来的，却发现里面关于C2的很少，Prism就更是没有了。</p>
+<p>其中的统一管道过滤器，记得自己曾在ActiveMQ-CPP中见识过，那时好惊叹其中的嵌套实现，还自创了一个命名：链式装饰模式</p>
+<p>附：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://www.ics.uci.edu/~arcadia/C2/c2.html">C2官方网站</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.wangchao.net.cn/bbsdetail_25126.html">C2的新世界</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzI4NjYwMjcxOQ==&mid=2247484059&idx=1&sn=e7d3b821dc526c7307d91b355ebc026e">10本软件架构师必读书籍</a></li>
+<li>[Roy Thomas Fielding,其导师是</li>
+</ul>
+
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/os/install_rpi/">树莓派系统安装</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/os/install_mac/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-08-12T01:24:00.000Z" itemprop="datePublished">8月 12</time>
-</a>
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://vpn.argusai.net/chiron_2/" data-id="clbtby5jy0001h2ox633sd3tk" data-title="Chiron-2架构风格" class="article-share-link">分享</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/os/install_mac/">MAC系统安装</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/os/install_aliyun/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-08-11T07:40:00.000Z" itemprop="datePublished">8月 11</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/os/install_aliyun/">阿里云系统安装</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/os/install_ubuntu/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-08-11T07:35:00.000Z" itemprop="datePublished">8月 11</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/os/install_ubuntu/">ubuntu系统安装</a>
-    </h1>
-  
-
-    </header>
+    </footer>
   </div>
-</article>
   
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/os/install_window/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-04-29T08:49:08.000Z" itemprop="datePublished">4月 29</time>
-</a>
-      
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/os/install_window/">windows系统安装</a>
-    </h1>
+    <a href="/docker/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          Docker使用
+        
+      </div>
+    </a>
   
+  
+    <a href="/jekyll/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">Jekyll使用</div>
+    </a>
+  
+</nav>
 
-    </header>
-  </div>
+  
 </article>
-  
-  
-    </div></section>
-  
 
 
 </section>

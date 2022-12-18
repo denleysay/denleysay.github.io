@@ -4,16 +4,19 @@
   <meta charset="utf-8">
   
   
-  <title>归档: 2022 | 晓月刀说</title>
+  <title>Ruby单元测试总结 | 晓月刀说</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="晓月刀说的个人空间">
-<meta property="og:type" content="website">
-<meta property="og:title" content="晓月刀说">
-<meta property="og:url" content="http://vpn.argusai.net/archives/2022/index.html">
+  <meta name="description" content="Ruby中最简单的单元测试操作指南">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ruby单元测试总结">
+<meta property="og:url" content="http://vpn.argusai.net/ruby_test/index.html">
 <meta property="og:site_name" content="晓月刀说">
-<meta property="og:description" content="晓月刀说的个人空间">
+<meta property="og:description" content="Ruby中最简单的单元测试操作指南">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2017-04-08T01:00:00.000Z">
+<meta property="article:modified_time" content="2022-12-18T12:13:50.997Z">
 <meta property="article:author" content="Denley Hsiao">
+<meta property="article:tag" content="CI">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="晓月刀说" type="application/atom+xml">
@@ -71,153 +74,80 @@
 </header>
 
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2022" class="archive-year">2022</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/qa/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-08-27T01:31:00.000Z" itemprop="datePublished">8月 27</time>
+        <section id="main"><article id="post-ruby_test" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/ruby_test/" class="article-date">
+  <time class="dt-published" datetime="2017-04-08T01:00:00.000Z" itemprop="datePublished">2017-04-08</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>►<a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/Ruby/">Ruby</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/qa/">问题汇总</a>
+    <h1 class="p-name article-title" itemprop="headline name">
+      Ruby单元测试总结
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/os/install_os/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-08-25T14:45:00.000Z" itemprop="datePublished">8月 25</time>
-</a>
+    <div class="e-content article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/os/install_os/">通用系统安装</a>
-    </h1>
-  
+        <p>Ruby中最简单的单元测试操作指南</p>
+<span id="more"></span>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/os/install_rpi/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-08-12T01:58:00.000Z" itemprop="datePublished">8月 12</time>
-</a>
+<p>测试源文件: <code>people.rb</code></p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">People</span></span><br><span class="line">  <span class="keyword">def</span> <span class="title function_">name</span></span><br><span class="line">  	<span class="string">&quot;Hello&quot;</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>使用老版本的单元测试工具：Unit Test</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">require</span> <span class="string">&#x27;test/unit&#x27;</span></span><br><span class="line">require_relative <span class="string">&#x27;people&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">TestPeople</span> &lt; <span class="title class_ inherited__">Test::Unit::TestCase</span></span><br><span class="line">  <span class="keyword">def</span> <span class="title function_">setup</span></span><br><span class="line">    <span class="variable">@people</span> = People.new</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line">  </span><br><span class="line">  <span class="keyword">def</span> <span class="title function_">test_name</span></span><br><span class="line">  	assert_equal <span class="string">&quot;Hello&quot;</span>, <span class="variable">@people</span>.name</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>使用新版本的测试工具：MiniTest</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">require</span> <span class="string">&#x27;minitest/autorun&#x27;</span></span><br><span class="line">require_relative <span class="string">&#x27;people&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">TestPeople</span> &lt; <span class="title class_ inherited__">Minitest::Test</span></span><br><span class="line">  <span class="keyword">def</span> <span class="title function_">setup</span></span><br><span class="line">    <span class="variable">@people</span> = People.new</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line">  </span><br><span class="line">  <span class="keyword">def</span> <span class="title function_">test_name</span></span><br><span class="line">  	assert_equal <span class="string">&quot;Hello&quot;</span>, <span class="variable">@people</span>.name</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+
+<p>可参考<a target="_blank" rel="noopener" href="http://chloerei.com/2015/10/26/testing-guide">测试指南</a></p>
+
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/os/install_rpi/">树莓派系统安装</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/os/install_mac/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-08-12T01:24:00.000Z" itemprop="datePublished">8月 12</time>
-</a>
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://vpn.argusai.net/ruby_test/" data-id="clbtby5kw001eh2oxfz3c48p8" data-title="Ruby单元测试总结" class="article-share-link">分享</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/os/install_mac/">MAC系统安装</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/os/install_aliyun/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-08-11T07:40:00.000Z" itemprop="datePublished">8月 11</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/os/install_aliyun/">阿里云系统安装</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/os/install_ubuntu/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-08-11T07:35:00.000Z" itemprop="datePublished">8月 11</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/os/install_ubuntu/">ubuntu系统安装</a>
-    </h1>
-  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CI/" rel="tag">CI</a></li></ul>
 
-    </header>
+    </footer>
   </div>
-</article>
   
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/os/install_window/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-04-29T08:49:08.000Z" itemprop="datePublished">4月 29</time>
-</a>
-      
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/os/install_window/">windows系统安装</a>
-    </h1>
+    <a href="/log/20170515/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          20170515日志
+        
+      </div>
+    </a>
   
+  
+    <a href="/coder/leveldb/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">leveldb源码分析</div>
+    </a>
+  
+</nav>
 
-    </header>
-  </div>
+  
 </article>
-  
-  
-    </div></section>
-  
 
 
 </section>

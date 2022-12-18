@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Objective-C学习笔记 | 晓月刀说</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="目前好象只有Apple使用Objective-C作为其支持的语言吧，那它与C++相比到底如何呢？">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Objective-C学习笔记">
+<meta property="og:url" content="http://vpn.argusai.net/objective_c/index.html">
+<meta property="og:site_name" content="晓月刀说">
+<meta property="og:description" content="目前好象只有Apple使用Objective-C作为其支持的语言吧，那它与C++相比到底如何呢？">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2009-08-25T00:39:00.000Z">
+<meta property="article:modified_time" content="2022-12-18T12:13:50.997Z">
+<meta property="article:author" content="Denley Hsiao">
+<meta property="article:tag" content="Objective-C">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="晓月刀说" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.1.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">晓月刀说</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://vpn.argusai.net"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-objective_c" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/objective_c/" class="article-date">
+  <time class="dt-published" datetime="2009-08-25T00:39:00.000Z" itemprop="datePublished">2009-08-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Objective-C学习笔记
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>目前好象只有Apple使用Objective-C作为其支持的语言吧，那它与C++相比到底如何呢？</p>
+<span id="more"></span>
+
+<p>与C++的不同之处有：</p>
+<ul>
+<li>O-C中所有的类都必须继承自NSObject。</li>
+<li>O-C中所有对象都是指针的形式。</li>
+<li>O-C用self代替this。</li>
+<li>O-C使用id代替void*。</li>
+<li>O-C使用nil表示NULL</li>
+<li>O-Ck只支持单继承。</li>
+<li>O-C使用YES&#x2F;NO表示TRUE&#x2F;FALSE</li>
+<li>O-C使用#import代替#include</li>
+<li>O-C中用消息表示类的方法，并采用[aInstance method:argv]调用形式。</li>
+<li>O-C支持反射机制</li>
+<li>O-C支持Dynamic Typing, Dynamic Binding和Dynamic Loading。</li>
+</ul>
+<p>与C++的相同之处有：</p>
+<ul>
+<li>与C共享的部分一致。</li>
+<li>可以使用assert(BOOL), 一般用NSCParameterAssert(BOOL)代替。</li>
+</ul>
+<p>O-C中的命名前缀说明：</p>
+<ul>
+<li>NS-：NextStep</li>
+<li>CF-：Core Foundation</li>
+<li>CA-：Core Animation</li>
+<li>CG-：Core Graphics</li>
+<li>UI-：User Interface</li>
+</ul>
+<p>O-C中的消息特殊性：<br>调用消息的类可以不知道如何响应这个消息。如果它不知道如何处理这个消息，它会自动的将这个消息转给其他的类，比如它的父类。<br>调用消息的类可以是nil。在C++中，在使用类方法之前，我们都需要检查对象是否为空，所以在实现析构函数的时候，常会有如下的代码，如if (var) { delete var; } 但是在objective c中，我们就可以直接写[var release]; 即使var &#x3D;&#x3D; nil, 也不会有问题。<br>O-C中的函数声明格式有：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-/+ (return type) function_name;</span><br><span class="line"></span><br><span class="line">-/+ (return type) function_name : (parameter type) parameter;</span><br><span class="line"></span><br><span class="line">-/+ (return type) function_name : (parameter type) parameter1 otherParameter : (parameter_type) parameter2</span><br></pre></td></tr></table></figure>
+
+<p>以上参数说明:-表示一般函数，+表示静态函数。otherParameter是参数的别名(第一个参数的别名省略),在函数调用时方便指定。</p>
+<p>O-C中的构造&#x2F;析构函数</p>
+<ul>
+<li>O-C中的init()&#x2F;release()对应于C++的构造&#x2F;析构函数。alloc()&#x2F;dealloc()也就对应于C++的new和delete,其中的dealloc()由于引用计数的自动调用而不用手动调用。</li>
+<li>O-C中父类的init()&#x2F;release()函数需要子类的手动调用。而且每次都必须调用。不同于C++的自动调用。</li>
+<li>构造函数(- (id) init)调用形如：CSample* pSample&#x3D;[CSample alloc] init];其中alloc(+ (id) alloc)是继承来的static函数，init是继承来的一般函数，如重写一般函数时，则相当于C++的覆盖(不带参数)或重载(带参数)。</li>
+<li>析构函数(- (void) release)将引用计数减1，当&#x3D;0时父类的release()会自动调用dealloc(- (void) dealloc);</li>
+</ul>
+<p>当O-C没有数据成员时，可省略{},建议保留。</p>
+<p>继承下来的方法，如：-(id) init可以头文件中省略，建议保留</p>
+<p>0-C中只有数据成员的访问限制，没有方法的访问限制。</p>
+<p>同C++一样，数据成员有三种访问限制public, protected, private，缺省是protected。</p>
+<p>示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">@interface AccessExample: NSObject &#123; </span><br><span class="line">@public </span><br><span class="line">int publicVar; </span><br><span class="line">@protected </span><br><span class="line">int protectedVar; </span><br><span class="line">@private </span><br><span class="line">int privateVar; </span><br><span class="line">&#125; </span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+
+<p>方法的访问限制可通过Category实现</p>
+<p>示例：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">@interface MyClass</span><br><span class="line"></span><br><span class="line">- (void) sayHello &#123;</span><br><span class="line"></span><br><span class="line">NSLog(@&quot;Hello&quot;); </span><br><span class="line"></span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">@end </span><br><span class="line"></span><br><span class="line">@interface MyClass(Private)</span><br><span class="line"></span><br><span class="line">- (void) kissGoodbye;</span><br><span class="line"></span><br><span class="line">@end </span><br></pre></td></tr></table></figure>
+
+<p>O-C中没有类的静态变量，只有全局变量</p>
+<p>O-C中的数组NSArray可以保存不同类型的数据。</p>
+<p>O-C也支持run-time时的类类型检查</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">- (BOOL) isKindOfClass: classObj </span><br><span class="line">用于判断该对象是否属于某个类或者它的子类</span><br><span class="line"></span><br><span class="line">- (BOOL) isMemberOfClass: classObj </span><br><span class="line">用于判断该对象是否属于某个类（这里不包括子类)</span><br><span class="line"></span><br><span class="line">- (BOOL) respondsToSelector: selector </span><br><span class="line">用于判断该对象是否能响应某个消息。这里，我们可以将@selector后面带的参数理解为C++中的函数指针。 </span><br><span class="line">注意：1）不要忘了@ 2）@selector后面用的是()，而不是［］。3）要在消息名称后面跟：，无论这个消息是否带参数。如：[pSquare respondsToSelector:@selector(Set: andHeight:)]。</span><br><span class="line"></span><br><span class="line">+ (BOOL) instancesRespondToSelector: selector </span><br><span class="line">用于判断该类是否能响应某个消息。这是一个静态函数。</span><br><span class="line"></span><br><span class="line">-(id) performSelector: selector ：调用对象的selector方法。</span><br></pre></td></tr></table></figure>
+
+<p>conformsToProtocol 类似于respondsToSelector ，用于动态检查某个对象是否遵守某个协议。</p>
+<p>Category：在没有源代码的情况下，为一个已经存在的类添加一些新的功能</p>
+<p>只能添加新的方法，不能添加新的数据成员</p>
+<p>Category 的名字必须是唯一的</p>
+<p>Protocol：相当于C++中的纯虚类</p>
+<p>形如：<code>@interface MyDate: NSObject &lt;Printing&gt; &#123; &#125; @end</code><br>使用：<code>MyDate * dat = [[MyDate alloc] init]; id&lt;Printing&gt; var = dat; [var print]</code><br>说明：我们首先声明了Printing 协议，任何遵守这个协议的类，都必须实现print 方法。在Objective C中，我们通过&lt;&gt;来表示遵守某个协议。当某个类声明要遵守某个协议之后，它就必须在.m文件中实现这个协议中的所有方法。使用id<Printing> 作为类型，而不是象C++中的Printing* var。<br>IBOutlet, IBAction: 这两个东西其实在语法中没有太大的作用。如果你希望在Interface Builder中能看到这个控件对象，那么在定义的时候前面加上IBOutlet，在IB里就能看到这个对象的outlet，如果你希望在Interface Builder里控制某个对象执行某些动作，就在方法前面加上(IBAction)。<br>尽量避免在一行语句中进行两层以上的嵌套<br>消息转发：<code>- (void) forwardInvocation: (NSInvocation*)anInvocation;</code></p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
+<li><a target="_blank" rel="noopener" href="http://www.cppblog.com/ietj/archive/2009/08/25/94346.html">阅读原文</a></li>
+<li><a target="_blank" rel="noopener" href="http://blog.csdn.net/huanglx1984/archive/2009/07/06/4325377.aspx">iPhone开发学习笔记</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://vpn.argusai.net/objective_c/" data-id="clbtby5km000mh2ox37hxbgdx" data-title="Objective-C学习笔记" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Objective-C/" rel="tag">Objective-C</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/resource_release/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          C++ 资源释放
+        
+      </div>
+    </a>
+  
+  
+    <a href="/error_handle/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">C++错误处理</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/coder/">代码分析师</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/Docker/">Docker</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/Markdown/">Markdown</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/Vagrant/">Vagrant</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF/AI/">AI</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF/C/">C++</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF/Rails/">Rails</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF/Ruby/">Ruby</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%8A%80%E6%9C%AF/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">软件工程</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/os/">操作系统</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/log/">日志</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/misc/">杂项</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Book/" rel="tag">Book</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CI/" rel="tag">CI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Database/" rel="tag">Database</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Firewall/" rel="tag">Firewall</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/" rel="tag">Nginx</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Objective-C/" rel="tag">Objective-C</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Third-Party/" rel="tag">Third-Party</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/WeChat/" rel="tag">WeChat</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Book/" style="font-size: 10px;">Book</a> <a href="/tags/C/" style="font-size: 20px;">C++</a> <a href="/tags/CI/" style="font-size: 15px;">CI</a> <a href="/tags/Database/" style="font-size: 15px;">Database</a> <a href="/tags/Firewall/" style="font-size: 10px;">Firewall</a> <a href="/tags/Nginx/" style="font-size: 10px;">Nginx</a> <a href="/tags/Objective-C/" style="font-size: 10px;">Objective-C</a> <a href="/tags/Third-Party/" style="font-size: 20px;">Third-Party</a> <a href="/tags/WeChat/" style="font-size: 10px;">WeChat</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">八月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/05/">五月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/06/">六月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">五月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">十二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">四月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">七月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/12/">十二月 2011</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/09/">九月 2010</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/12/">十二月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/11/">十一月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/10/">十月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2009/08/">八月 2009</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2008/03/">三月 2008</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2007/12/">十二月 2007</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/qa/">问题汇总</a>
+          </li>
+        
+          <li>
+            <a href="/os/install_os/">通用系统安装</a>
+          </li>
+        
+          <li>
+            <a href="/os/install_rpi/">树莓派系统安装</a>
+          </li>
+        
+          <li>
+            <a href="/os/install_mac/">MAC系统安装</a>
+          </li>
+        
+          <li>
+            <a href="/os/install_aliyun/">阿里云系统安装</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 Denley Hsiao<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

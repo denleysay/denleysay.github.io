@@ -4,16 +4,21 @@
   <meta charset="utf-8">
   
   
-  <title>归档: 2022 | 晓月刀说</title>
+  <title>leveldb源码分析 | 晓月刀说</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="晓月刀说的个人空间">
-<meta property="og:type" content="website">
-<meta property="og:title" content="晓月刀说">
-<meta property="og:url" content="http://vpn.argusai.net/archives/2022/index.html">
+  <meta name="description" content="Leveldb，一个google实现的非常高效的kv数据库">
+<meta property="og:type" content="article">
+<meta property="og:title" content="leveldb源码分析">
+<meta property="og:url" content="http://vpn.argusai.net/coder/leveldb/index.html">
 <meta property="og:site_name" content="晓月刀说">
-<meta property="og:description" content="晓月刀说的个人空间">
+<meta property="og:description" content="Leveldb，一个google实现的非常高效的kv数据库">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2017-03-05T04:00:00.000Z">
+<meta property="article:modified_time" content="2022-12-18T12:13:50.997Z">
 <meta property="article:author" content="Denley Hsiao">
+<meta property="article:tag" content="C++">
+<meta property="article:tag" content="Database">
+<meta property="article:tag" content="Third-Party">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="晓月刀说" type="application/atom+xml">
@@ -71,153 +76,93 @@
 </header>
 
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2022" class="archive-year">2022</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/qa/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-08-27T01:31:00.000Z" itemprop="datePublished">8月 27</time>
+        <section id="main"><article id="post-coder/leveldb" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/coder/leveldb/" class="article-date">
+  <time class="dt-published" datetime="2017-03-05T04:00:00.000Z" itemprop="datePublished">2017-03-05</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/coder/">代码分析师</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/qa/">问题汇总</a>
+    <h1 class="p-name article-title" itemprop="headline name">
+      leveldb源码分析
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/os/install_os/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-08-25T14:45:00.000Z" itemprop="datePublished">8月 25</time>
-</a>
+    <div class="e-content article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/os/install_os/">通用系统安装</a>
-    </h1>
-  
+        <p>Leveldb，一个google实现的非常高效的kv数据库</p>
+<span id="more"></span>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/os/install_rpi/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-08-12T01:58:00.000Z" itemprop="datePublished">8月 12</time>
-</a>
+<h1 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h1><ul>
+<li>下载<a target="_blank" rel="noopener" href="https://github.com/google/leveldb">源码</a></li>
+<li>执行<code>make</code>编译，结果分别在以下目录中<ul>
+<li>out-static: 静态库版本</li>
+<li>out-shared: 动态库版本</li>
+</ul>
+</li>
+</ul>
+<p>以下为求统一，都只选用静态库版本进行示范</p>
+<h1 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h1><h2 id="功能测试"><a href="#功能测试" class="headerlink" title="功能测试"></a>功能测试</h2><ul>
+<li>全部测试：<code>make check</code></li>
+<li>单个测试：<code>./out-static/db_test</code></li>
+</ul>
+<h2 id="性能测试"><a href="#性能测试" class="headerlink" title="性能测试"></a>性能测试</h2><ul>
+<li>leveldb<br>因已编译 ，只需执行：<code>./out-static/db_bench</code></li>
+<li>sqlite  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">brew install sqlite  # 安装依赖</span><br><span class="line">make out-static/db_bench_sqlite3 # 编译</span><br><span class="line">./out-static/db_bench_sqlite3</span><br></pre></td></tr></table></figure></li>
+<li>treedb<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">brew install kyoto-cabinet  # 安装依赖kyotocabinet</span><br><span class="line">make out-static/db_bench_tree_db # 编译</span><br><span class="line">./out-static/db_bench_tree_db</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>这里是<a target="_blank" rel="noopener" href="http://www.dedecms.com/knowledge/data-base/nosql/2012/0820/8693.html">LevelDB、TreeDB、SQLite3性能对比测试</a>结果</p>
+<h1 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h1><p>从核心api接口入手: 接口文件是<code>db.h</code>, 实现文件是<code>db_impl.h</code></p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ul>
+<li><a target="_blank" rel="noopener" href="http://blog.csdn.net/u014120684/article/details/46352081">makefile文件解析</a></li>
+</ul>
+
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/os/install_rpi/">树莓派系统安装</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/os/install_mac/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-08-12T01:24:00.000Z" itemprop="datePublished">8月 12</time>
-</a>
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://vpn.argusai.net/coder/leveldb/" data-id="clbtby5le001uh2oxgz5d9213" data-title="leveldb源码分析" class="article-share-link">分享</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/os/install_mac/">MAC系统安装</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/os/install_aliyun/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-08-11T07:40:00.000Z" itemprop="datePublished">8月 11</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/os/install_aliyun/">阿里云系统安装</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/os/install_ubuntu/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-08-11T07:35:00.000Z" itemprop="datePublished">8月 11</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/os/install_ubuntu/">ubuntu系统安装</a>
-    </h1>
-  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Database/" rel="tag">Database</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Third-Party/" rel="tag">Third-Party</a></li></ul>
 
-    </header>
+    </footer>
   </div>
-</article>
   
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/os/install_window/" class="archive-article-date">
-  <time class="dt-published" datetime="2022-04-29T08:49:08.000Z" itemprop="datePublished">4月 29</time>
-</a>
-      
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/os/install_window/">windows系统安装</a>
-    </h1>
+    <a href="/ruby_test/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          Ruby单元测试总结
+        
+      </div>
+    </a>
   
+  
+    <a href="/coder/sigslot/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">sigslot库分析</div>
+    </a>
+  
+</nav>
 
-    </header>
-  </div>
+  
 </article>
-  
-  
-    </div></section>
-  
 
 
 </section>
