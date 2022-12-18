@@ -105,3 +105,4 @@ dist
 
 public/
 db.json
+.DS_Store

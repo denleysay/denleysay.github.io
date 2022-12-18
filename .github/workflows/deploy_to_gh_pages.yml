@@ -1,0 +1,29 @@
+name: deploy_to_gh_pages
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        submodules: recursive
+
+    - name: Copy files and build
+      run: |
+        cp CNAME source/
+        cp README.md source/
+        npm i -g hexo
+        npm install
+        hexo generate
+
+    - name: Build and deploy
+      uses: JamesIves/github-pages-deploy-action@releases/v3
+      with:
+        ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        BASE_BRANCH: master
+        BRANCH: gh-pages
+        FOLDER: public
