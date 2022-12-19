@@ -18,14 +18,5 @@ categories:
 * 虚拟机与宿主机通过共享文件夹互访
 * [破解app下载](https://filecr.com/)：Mac/Window/Android
 
-# git设置
-```bash
-git config --global user.name "Denley Hsiao"
-git config --global user.email denley@justtodo.com
-git config --global core.editor vim
-git config --global http.postBuffer 524288000
-git config --global https.postBuffer 524288000
-```
-
 # github设置
 对仓库`git@github.com:xxx/yyy`写操作时无需密码验证, 可参考[windows下github的ssh配置](https://www.jianshu.com/p/9317a927e844)

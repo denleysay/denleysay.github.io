@@ -68,6 +68,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 
 # 设置
 ## 系统设置
+* 执行app_config下的脚本
 * 下载软件时不再安全提示：通过执行`sudo spctl --master-disable`显示”Anywhere“，再选中此项
 ![Anywhere](/assets/images/mac/Anywhere.png)
 * 鼠标滚动不选中自然
@@ -90,10 +91,8 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 * Google Voice
 * Vimium
 
-## git/github设置
+## github设置
 参考系统安装的通用部分
-* [忽略.DS_Store文件](https://orianna-zzo.github.io/sci-tech/2018-01/mac%E4%B8%ADgit%E5%BF%BD%E7%95%A5.ds_store%E6%96%87%E4%BB%B6/)
-* [忽略已提交的.DS_Store文件](https://www.jianshu.com/p/e3d8eb2a4295)
 
 ## zsh设置
 * [zsh安装自动提示](https://www.jianshu.com/p/0d265d9f914b)
