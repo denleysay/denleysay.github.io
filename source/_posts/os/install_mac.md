@@ -17,8 +17,8 @@ categories:
 
 # 准备
 * 确定系统已更新：“About this Mac"
-    > 1) 确定操作系统已更新: Monterey Verssion 12.6.2;
-    > 2) 确定软件已更新：”Software Update...“；
+     1. 确定操作系统已更新: Monterey Verssion 12.6.2;
+     2. 确定软件已更新：”Software Update...“；
 * 对自带的git进行设置: http.postBuffer/https.postBuffer, 否则下一步的brew安装会出现错误，可参考git设置
 * [brew安装](https://brew.sh/index_zh-cn)
 ```bash
@@ -68,7 +68,6 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 
 # 设置
 ## 系统设置
-* 执行app_config下的脚本
 * 下载软件时不再安全提示：通过执行`sudo spctl --master-disable`显示”Anywhere“，再选中此项
 ![Anywhere](/assets/images/mac/Anywhere.png)
 * 鼠标滚动不选中自然
@@ -77,6 +76,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 ![FnKey](/assets/images/mac/FnKey.png)
 * 显示文件后缀
 ![ShowFileExt](/assets/images/mac/ShowFileExt.png)
+* 执行app_config下的脚本
 
 ## Alfred设置
 快捷键冲突：先取消spotlight设置
@@ -96,28 +96,28 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 
 ## zsh设置
 * 目录自动跳转: `j argusai_client`，此目录要以前访问过
-```bash
-brew install autojump
-# 安装成功后按提示执行
-[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
-```
+  ```bash
+  brew install autojump
+
+  # 安装成功后按提示执行
+  [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
+  ```
 * [安装自动提示](https://www.jianshu.com/p/0d265d9f914b)
-```bash
-# if use brew install
+  ```bash
 brew install zsh-autosuggestions
 echo "source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh" >> ${ZDOTDIR:-$HOME}/.zshrc
-```
+  ```
 
 * 安装语法高亮
-```bash
-  # if use brew install
+  ```bash
+  # use brew install
   brew install zsh-syntax-highlighting
   echo "source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ${ZDOTDIR:-$HOME}/.zshrc
 
   # use git install
   git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
   echo "source \$ZSH_CUSTOM/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" >> ${ZDOTDIR:-$HOME}/.zshrc
-```
+  ```
 
 ## Textmate设置
 * 下载文件后重启
