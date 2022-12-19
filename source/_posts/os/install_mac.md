@@ -40,7 +40,7 @@ categories:
   brew install zsh
   
   # Console，其中的docker是客户端
-  brew install boost autojump docker docker-compose docker-completion docker-compose-completion wget you-get
+  brew install boost docker docker-compose docker-completion docker-compose-completion wget you-get
   brew install --HEAD https://gist.githubusercontent.com/Kronuz/96ac10fbd8472eb1e7566d740c4034f8/raw/gtest.rb
   brew link docker docker-compose --overwrite
   brew install enca  # 批量文件格式转换工具，使用方法：enca -L zh_CN -x UTF-8 *
@@ -95,6 +95,12 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 参考系统安装的通用部分
 
 ## zsh设置
+* 目录自动跳转: `j argusai_client`，此目录要以前访问过
+```bash
+brew install autojump
+# 安装成功后按提示执行
+[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
+```
 * [安装自动提示](https://www.jianshu.com/p/0d265d9f914b)
 ```bash
 # if use brew install
