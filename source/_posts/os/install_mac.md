@@ -95,13 +95,11 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 参考系统安装的通用部分
 
 ## zsh设置
-* [zsh安装自动提示](https://www.jianshu.com/p/0d265d9f914b)
+* [安装自动提示](https://www.jianshu.com/p/0d265d9f914b)
 ```bash
-  git clone git://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
-  # 在~/.zshrc 中添加
-  plugins=(
-    zsh-autosuggestions
-  )
+# if use brew install
+brew install zsh-autosuggestions
+echo "source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh" >> ${ZDOTDIR:-$HOME}/.zshrc
 ```
 
 * 安装语法高亮
