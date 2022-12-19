@@ -82,16 +82,18 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 
 ## GoogleChrome设置
 在插件应用商店中下载
-> 1) Evernote Web Clipper
-> 2) Clearly Reader
-> 3) Ghelper: 登陆才生效
-> 4) GoFullPage
-> 5) Language Reactor
-> 6) Google Voice
-> 7) Vimium
+* Evernote Web Clipper
+* Clearly Reader
+* Ghelper: 登陆才生效
+* GoFullPage
+* Language Reactor
+* Google Voice
+* Vimium
 
 ## git/github设置
 参考系统安装的通用部分
+* [忽略.DS_Store文件](https://orianna-zzo.github.io/sci-tech/2018-01/mac%E4%B8%ADgit%E5%BF%BD%E7%95%A5.ds_store%E6%96%87%E4%BB%B6/)
+* [忽略已提交的.DS_Store文件](https://www.jianshu.com/p/e3d8eb2a4295)
 
 ## zsh设置
 * [zsh安装自动提示](https://www.jianshu.com/p/0d265d9f914b)
