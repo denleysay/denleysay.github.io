@@ -19,6 +19,8 @@ categories:
 
 ## 必选
 * [驱动精灵万能网卡版](http://www.drivergenius.com/)
+* git
+* gvim
 
 ## 可选
 * 烧录工具：[stc-isp-15xx-v6.86S](/software/win7/stc-isp-15xx-v6.86S.zip)

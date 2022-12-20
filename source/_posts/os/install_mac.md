@@ -47,7 +47,7 @@ categories:
   brew install enca  # 批量文件格式转换工具，使用方法：enca -L zh_CN -x UTF-8 *
 
   # GUI
-  # cmake aliwangwang thunder mounty qq wechat wechatwebdevtools shuttle textmate v2rayU
+  # cmake sourcetree aliwangwang thunder mounty qq wechat wechatwebdevtools shuttle textmate v2rayU
   # the-unarchiver obs xmind-zen postgres pgadmin4 sourcetree homebrew/cask-versions/docker-edge virtualbox vagrant vagrant-manager chrome-remote-desktop-host
   brew install --cask yinxiangbiji google-chrome iterm2 github teamviewer vlc baidunetdisk tencent-meeting
   brew cleanup
