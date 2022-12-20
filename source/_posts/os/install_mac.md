@@ -38,6 +38,7 @@ categories:
   brew install git --with-gettext
   # Monterey已缺省安装
   brew install zsh
+  brew install tmux
   
   # Console，其中的docker是客户端
   brew install boost docker docker-compose docker-completion docker-compose-completion wget you-get
